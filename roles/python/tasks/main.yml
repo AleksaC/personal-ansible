@@ -1,0 +1,25 @@
+- name: Install openssl & zlib headers  # needed by pyenv to install python3.8
+  apt:
+    pkg:
+      - libssl-dev
+      - zlib1g-dev
+
+- name: Install pyenv and change global python interpreter
+  become: false
+  vars:
+    pyenv_root: /home/{{ ansible_user }}/.pyenv
+  block:
+    - name: Clone pyenv repo
+      git:
+        repo: https://github.com/pyenv/pyenv.git
+        dest: ~/.pyenv
+
+    - name: Install python3.8
+      shell: >
+        export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH" &&
+        pyenv install 3.8.1
+
+    - name: Change global python version
+      shell: >
+        export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH" &&
+        pyenv global 3.8.1

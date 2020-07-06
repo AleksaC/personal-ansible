@@ -1,0 +1,30 @@
+- name: Download dotfiles
+  become: false
+  vars:
+    home: /home/{{ ansible_user }}/
+  block:
+    - name: Get .zshrc
+      get_url:
+        url: https://raw.githubusercontent.com/AleksaC/dotfiles/master/.zshrc
+        dest: "{{ home }}"
+
+    - name: Get .profile
+      get_url:
+        url: https://raw.githubusercontent.com/AleksaC/dotfiles/master/.profile
+        dest: "{{ home }}"
+
+    - name: Get .profile
+      get_url:
+        url: https://raw.githubusercontent.com/AleksaC/dotfiles/master/.p10k.zsh
+        dest: "{{ home }}"
+
+    - name: Ensure ~/.config/nvim exists
+      become: false
+      file:
+        name: "{{ home }}/.config/nvim"
+        state: directory
+
+    - name: Get init.vim
+      get_url:
+        url: https://raw.githubusercontent.com/AleksaC/dotfiles/master/init.vim
+        dest: "{{ home }}/.config/nvim"

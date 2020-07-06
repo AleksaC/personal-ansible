@@ -1,0 +1,4 @@
+- name: Install VLC
+  apt:
+    name: vlc
+    update_cache: true

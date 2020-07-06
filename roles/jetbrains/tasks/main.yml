@@ -1,0 +1,10 @@
+- name: Download toolbox app
+  get_url:
+    url: https://download-cf.jetbrains.com/toolbox/jetbrains-toolbox-1.17.7139.tar.gz
+    dest: /tmp
+
+- name: Untar tooblox app
+  unarchive:
+    src: /tmp/jetbrains-toolbox-1.17.7139.tar.gz
+    dest: "/home/{{ ansible_user }}"
+    owner: "{{ ansible_user }}"

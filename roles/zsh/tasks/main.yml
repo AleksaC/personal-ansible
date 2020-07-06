@@ -1,0 +1,36 @@
+- name: Install zsh
+  apt:
+    name: zsh
+
+- name: Make zsh default shell
+  user:
+    name: "{{ ansible_user }}"
+    shell: /bin/zsh
+
+- name: Install powerline fonts
+  apt:
+    name: fonts-powerline
+
+- name: Install and configure ohmyzsh
+  become: false
+  block:
+    - name: Install ohmyzsh
+      git:
+        repo: https://github.com/ohmyzsh/ohmyzsh
+        dest: "/home/{{ ansible_user }}/.oh-my-zsh"
+
+    - name: Install zsh autosuggestions plugin
+      git:
+        repo: https://github.com/zsh-users/zsh-autosuggestions
+        dest: "/home/{{ ansible_user }}/.oh-my-zsh/plugins/zsh-autosuggestions"
+
+    - name: Install powerlevel10k theme
+      git:
+        repo: https://github.com/romkatv/powerlevel10k.git
+        dest: "/home/{{ ansible_user }}/.oh-my-zsh/custom/themes/powerlevel10k"
+        depth: 1
+
+    - name: Install zsh syntax highlighting plugin
+      git:
+        repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+        dest: "/home/{{ ansible_user }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"

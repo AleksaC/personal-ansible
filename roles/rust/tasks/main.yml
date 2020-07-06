@@ -1,0 +1,9 @@
+- name: Download rustup-init
+  uri:
+    url: https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init
+    dest: /tmp/rustup-init
+    status_code: [200, 304]
+    mode: a+x
+
+- name: Install rust toolchain
+  shell: /tmp/rustup-init -y

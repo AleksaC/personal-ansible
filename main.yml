@@ -1,0 +1,22 @@
+- hosts: all
+  become: True
+  roles:
+    - chrome
+    - docker
+    - dotfiles
+    - gimp
+    - go
+    - jetbrains
+    - kate
+    - konsole
+    - neovim
+    - node
+    - obs
+    - python
+    - rust
+    - slack
+    - system
+    - virtualbox
+    - vlc
+    - vscode
+    - zsh

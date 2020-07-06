@@ -1,0 +1,4 @@
+- name: Install kate
+  apt:
+    name: kate
+    update_cache: true
