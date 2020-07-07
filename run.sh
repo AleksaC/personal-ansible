@@ -2,12 +2,18 @@
 
 set -eou pipefail
 
-# Temporarily disable automatic updates so that they don't acquire dpkg lock between ansible tasks
+# Temporarily disable unattended upgrades so they don't acquire dpkg lock between ansible tasks
 old_config=$(< /etc/apt/apt.conf.d/20auto-upgrades)
 sudo sed -i 's/1/0/g' /etc/apt/apt.conf.d/20auto-upgrades
 
-sudo apt update
+restore_config() {
+  echo "$old_config" | sudo tee /etc/apt/apt.conf.d/20auto-upgrades > /dev/null
+}
 
+trap restore_config EXIT
+trap restore_config ERR
+
+sudo apt update
 
 if [ ! -t 0 ]; then
   if ! command -v git > /dev/null; then
@@ -43,6 +49,3 @@ if ! command -v ansible-playbook > /dev/null; then
 fi
 
 ansible-playbook main.yml -K
-
-# Restore original auto update config
-echo "$old_config" | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
