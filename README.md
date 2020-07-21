@@ -15,7 +15,7 @@ in a separate role and the ones that are not are either indispensible
 (like git, curl etc.) or mostly insignificant.
 
 ## Usage
-You can install everythin with a singel command on a clean isntall:
+You can install everythin with a single command on a clean isntall:
 ```shell script
 wget -O - "https://raw.githubusercontent.com/AleksaC/personal-ansible/master/run.sh" | bash
 ```
