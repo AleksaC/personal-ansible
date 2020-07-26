@@ -15,7 +15,7 @@ in a separate role and the ones that are not are either indispensible
 (like git, curl etc.) or mostly insignificant.
 
 ## Usage
-You can install everythin with a single command on a clean isntall:
+You can install everything with a single command on a clean install:
 ```shell script
 wget -O - "https://raw.githubusercontent.com/AleksaC/personal-ansible/master/run.sh" | bash
 ```
@@ -23,6 +23,12 @@ To only run the playbook use:
 ```shell script
 ansible-playbook main.yml -K
 ```
+
+**Note**: For this purpose I've set up ansible in a virtual environment. It
+turned out to be a bit tricky. To see how I've done it take a look at `run.sh`.
+If you want to install ansbile through `apt` you need to change the
+`interpreter_python` to a system interpreter in `ansible.cfg`. You also need to
+install `psutil` as it is for some reason  required by `dconf` tasks.
 
 ## Contact
 - [Personal website](https://aleksac.me)
