@@ -23,3 +23,12 @@
       shell: >
         export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH" &&
         pyenv global 3.8.1
+
+- name: Download poetry installer
+  become: false
+  get_url:
+    url: https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py
+    dest: /tmp/get-poetry.py
+
+- name: Install poetry
+  shell: python /tmp/get-poetry.py -y
