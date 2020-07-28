@@ -1,22 +1,37 @@
 - name: Download dotfiles
   become: false
   vars:
-    home: /home/{{ ansible_user }}/
+    home: /home/{{ ansible_user }}
   block:
-    - name: Get .zshrc
-      get_url:
-        url: https://raw.githubusercontent.com/AleksaC/dotfiles/master/.zshrc
-        dest: "{{ home }}"
+    - name: Pull dotfiles repo
+      git:
+        repo: https://github.com/AleksaC/dotfiles
+        dest: "{{ home }}/dotfiles"
 
-    - name: Get .profile
-      get_url:
-        url: https://raw.githubusercontent.com/AleksaC/dotfiles/master/.profile
-        dest: "{{ home }}"
+    - name: Symlink .zshrc
+      file:
+        src: "{{ home }}/dotfiles/.zshrc"
+        dest: "{{ home }}/.zshrc"
+        state: link
 
-    - name: Get .profile
-      get_url:
-        url: https://raw.githubusercontent.com/AleksaC/dotfiles/master/.p10k.zsh
-        dest: "{{ home }}"
+    - name: Symlink .profile
+      file:
+        src: "{{ home }}/dotfiles/.profile"
+        dest: "{{ home }}/.profile"
+        state: link
+        force: yes
+
+    - name: Symlink powerlevel 10k config
+      file:
+        src: "{{ home }}/dotfiles/.p10k.zsh"
+        dest: "{{ home }}/.p10k.zsh"
+        state: link
+
+    - name: Symlink pythonrc
+      file:
+        src: "{{ home }}/dotfiles/.pythonrc.py"
+        dest: "{{ home }}/.pythonrc.py"
+        state: link
 
     - name: Ensure ~/.config/nvim exists
       become: false
@@ -24,7 +39,8 @@
         name: "{{ home }}/.config/nvim"
         state: directory
 
-    - name: Get init.vim
-      get_url:
-        url: https://raw.githubusercontent.com/AleksaC/dotfiles/master/init.vim
-        dest: "{{ home }}/.config/nvim"
+    - name: Symlink init.vim
+      file:
+        src: "{{ home }}/dotfiles/init.vim"
+        dest: "{{ home }}/.config/nvim/init.vim"
+        state: link
