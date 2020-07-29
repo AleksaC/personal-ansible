@@ -26,7 +26,7 @@ if [ ! -t 0 ]; then
 fi
 
 if ! command -v ansible-playbook > /dev/null; then
-  sudo apt install -y python3-virtualenv python3-dev
+  sudo apt install -y build-essential python3-virtualenv python3-dev
 
   virtualenv venv -p python3
   source ./venv/bin/activate
