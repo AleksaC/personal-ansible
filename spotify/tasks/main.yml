@@ -1,0 +1,14 @@
+- name: Add Spotify signing key
+  apt_key:
+    url: https://download.spotify.com/debian/pubkey.gpg
+    state: present
+
+- name: Add Spotify repository
+  apt_repository:
+    repo: deb http://repository.spotify.com stable non-free
+    state: present
+
+- name: Install Spotify
+  apt:
+    name: spotify-client
+    update_cache: true
