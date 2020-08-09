@@ -4,10 +4,18 @@
     url: https://github.com/protocolbuffers/protobuf/releases/download/v3.12.4/protoc-3.12.4-osx-x86_64.zip
     dest: /tmp/protoc.zip
 
+- name: Create directory where protoc will be unzipped
+  become: false
+  file:
+    path: /tmp/protoc
+    state: directory
+
 - name: Unzip protoc binary
+  become: false
   unarchive:
     src: /tmp/protoc.zip
-    dest: /tmp/protoc
+    dest: /tmp
+    mode: 750
 
 - name: Move protoc binary /usr/local/bin
   copy:
