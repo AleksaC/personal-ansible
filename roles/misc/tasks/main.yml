@@ -1,7 +1,7 @@
 - name: Download protoc release
   become: false
   get_url:
-    url: https://github.com/protocolbuffers/protobuf/releases/download/v3.12.4/protoc-3.12.4-osx-x86_64.zip
+    url: https://github.com/protocolbuffers/protobuf/releases/download/v3.12.4/protoc-3.12.4-linux-x86_64.zip
     dest: /tmp/protoc.zip
 
 - name: Create directory where protoc will be unzipped
@@ -14,13 +14,13 @@
   become: false
   unarchive:
     src: /tmp/protoc.zip
-    dest: /tmp
-    mode: 750
+    dest: /tmp/protoc
 
 - name: Move protoc binary /usr/local/bin
   copy:
     src: /tmp/protoc/bin/protoc
-    dest: /usr/local/bin/
+    dest: /usr/local/bin/protoc
+    mode: 0750
 
 - name: Install Insomnia client
   apt:
@@ -28,4 +28,4 @@
 
 - name: Install texlive
   apt:
-    name: texlive-full
+    name: texlive-latex-extra
