@@ -5,6 +5,11 @@
       - curl
     update_cache: true
 
+- name: Update git user name and email
+  shell: |
+    git config --global user.name "AleksaC"
+    git config --global user.email "aleksacukovic1@gmail.com"
+
 - name: Install Fira Code font
   apt:
     name: fonts-firacode
