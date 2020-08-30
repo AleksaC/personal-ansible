@@ -26,6 +26,7 @@
   apt_repository:
     repo: deb https://dl.yarnpkg.com/debian/ stable main
     state: present
+    mode: 0666
 
 - name: Install yarn
   apt:

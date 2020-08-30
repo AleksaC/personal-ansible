@@ -31,6 +31,7 @@
       get_url:
         url: https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py
         dest: /tmp/get-poetry.py
+        mode: 0666
 
     - name: Run poetry installer
       shell: python3 /tmp/get-poetry.py -y

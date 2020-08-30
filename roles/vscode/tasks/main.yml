@@ -15,6 +15,7 @@
   apt_repository:
     repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
     state: present
+    mode: 0666
 
 - name: Install Visual Studio Code
   apt:

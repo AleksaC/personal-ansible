@@ -3,6 +3,7 @@
   get_url:
     url: https://github.com/protocolbuffers/protobuf/releases/download/v3.12.4/protoc-3.12.4-linux-x86_64.zip
     dest: /tmp/protoc.zip
+    mode: 0666
 
 - name: Create directory where protoc will be unzipped
   become: false

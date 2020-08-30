@@ -9,6 +9,7 @@
       deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian
       {{ ansible_distribution_release }} contrib
     state: present
+    mode: 0666
 
 - name: Install VirtualBox
   apt:

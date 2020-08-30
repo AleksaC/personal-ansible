@@ -3,6 +3,7 @@
     url: https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
     dest: /tmp/go.tar.gz
     checksum: sha256:aed845e4185a0b2a3c3d5e1d0a35491702c55889192bb9c30e67a3de6849c067
+    mode: 0666
 
 - name: Untar to /usr/local
   unarchive:
