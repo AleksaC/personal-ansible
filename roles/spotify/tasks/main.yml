@@ -12,4 +12,3 @@
 - name: Install Spotify
   apt:
     name: spotify-client
-    update_cache: true

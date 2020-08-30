@@ -1,15 +1,3 @@
-- name: Install git, curl and other essential packages
-  apt:
-    pkg:
-      - git
-      - curl
-    update_cache: true
-
-- name: Update git user name and email
-  shell: |
-    git config --global user.name "AleksaC"
-    git config --global user.email "aleksacukovic1@gmail.com"
-
 - name: Install Fira Code font
   apt:
     name: fonts-firacode
@@ -74,3 +62,11 @@
     key: "/org/gnome/shell/extensions/dash-to-dock/isolate-workspaces"
     value: "true"
     state: present
+
+- name: Update git username
+  become: false
+  shell: git config --global user.name "AleksaC"
+
+- name: Update git email
+  become: false
+  shell: git config --global user.email "aleksacukovic1@gmail.com"

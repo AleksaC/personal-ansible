@@ -12,4 +12,3 @@
 - name: Install Google Chrome
   apt:
     name: google-chrome-stable
-    update_cache: true

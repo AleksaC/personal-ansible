@@ -6,7 +6,6 @@
       - curl
       - gnupg-agent
       - software-properties-common
-    update_cache: true
 
 - name: Add Docker signing key
   apt_key:

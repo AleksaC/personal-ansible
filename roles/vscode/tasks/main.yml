@@ -4,7 +4,6 @@
       - software-properties-common
       - apt-transport-https
       - wget
-    update_cache: true
 
 - name: Import the Microsoft GPG key
   apt_key:

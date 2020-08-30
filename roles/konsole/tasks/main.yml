@@ -1,7 +1,6 @@
 - name: Install Konsole
   apt:
     name: konsole
-    update_cache: true
 
 - name: Set Konsole as default terminal emulator
   alternatives:

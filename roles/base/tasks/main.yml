@@ -1,0 +1,7 @@
+- name: Install git, curl and other essential packages
+  apt:
+    pkg:
+      - git
+      - curl
+      - build-essential
+    update_cache: true

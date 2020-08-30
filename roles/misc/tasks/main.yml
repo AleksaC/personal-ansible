@@ -29,4 +29,7 @@
 
 - name: Install texlive
   apt:
-    name: texlive-latex-extra
+    pkg:
+      - texlive
+      - texlive-latex-extra
+      - texlive-fonts-extra

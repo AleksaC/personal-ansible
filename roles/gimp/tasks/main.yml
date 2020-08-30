@@ -1,4 +1,3 @@
 - name: Install gimp
   apt:
     name: gimp
-    update_cache: true

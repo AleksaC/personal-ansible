@@ -11,4 +11,3 @@
 - name: Install OBS
   apt:
     name: obs-studio
-    update_cache: true

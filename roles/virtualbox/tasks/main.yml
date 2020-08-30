@@ -14,4 +14,3 @@
 - name: Install VirtualBox
   apt:
     name: virtualbox-6.1
-    update_cache: true

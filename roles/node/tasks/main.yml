@@ -31,5 +31,4 @@
 - name: Install yarn
   apt:
     name: yarn
-    update_cache: true
     install_recommends: no

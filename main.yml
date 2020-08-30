@@ -1,6 +1,7 @@
 - hosts: all
   become: True
   roles:
+    - base
     - chrome
     - docker
     - dotfiles
