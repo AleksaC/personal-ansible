@@ -17,6 +17,10 @@
         dest: /home/{{ ansible_user }}/.config/autostart/nemo-autostart-with-gnome.desktop
         mode: 0666
 
+    - name: Make nemo default app for opening directories
+      become: false
+      shell: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+
 - name: Remove gnome-icons config
   file:
     name: /usr/share/gnome-shell/extensions/desktop-icons@csoriano/
