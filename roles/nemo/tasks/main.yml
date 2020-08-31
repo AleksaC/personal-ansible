@@ -1,25 +1,30 @@
 - name: Install and configure Nemo file manager
+  become: false
   block:
     - name: Install Nemo
+      become: true
       apt:
         name: nemo
 
     - name: Make sure ~/.config/autostart directory exists
-      become: false
       file:
         name: /home/{{ ansible_user }}/.config/autostart
         state: directory
 
-    - name: Copy nemo autostart desktop entry to ~/.config/autostart
-      become: false
+    - name: Copy Nemo autostart desktop entry to ~/.config/autostart
       copy:
         src: files/nemo-autostart-with-gnome.desktop
         dest: /home/{{ ansible_user }}/.config/autostart/nemo-autostart-with-gnome.desktop
         mode: 0666
 
-    - name: Make nemo default app for opening directories
-      become: false
+    - name: Make Nemo default app for opening directories
       shell: xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+
+    - name: Disable Nemo desktop grid
+      dconf:
+        key: "/org/nemo/desktop/use-desktop-grid"
+        value: "false"
+        state: present
 
 - name: Remove gnome-icons config
   file:
