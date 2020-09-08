@@ -33,3 +33,7 @@
       - texlive
       - texlive-latex-extra
       - texlive-fonts-extra
+
+- name: Install htop
+  apt:
+    name: htop
