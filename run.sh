@@ -40,7 +40,7 @@ if ! command -v ansible-playbook > /dev/null; then
 
   cd py-apt
 
-  sudo apt download python3-apt=2.0.0
+  sudo apt download python3-apt
   dpkg -x python3-apt_*.deb python-apt
   cp -r ./python-apt/usr/lib/python3/dist-packages/* ../venv/lib/python3.8/site-packages/
 
