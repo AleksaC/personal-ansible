@@ -1,3 +1,9 @@
 - name: Install kate
   apt:
     name: kate
+
+- name: Make kate default editor for text
+  replace:
+    path: /usr/share/applications/defaults.list
+    regexp: org.gnome.gnome.desktop
+    replace: org.kde.kate.desktop
