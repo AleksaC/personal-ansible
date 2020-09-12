@@ -32,3 +32,10 @@
   apt:
     name: yarn
     install_recommends: no
+
+- name: Install gatsby cli
+  become: false
+  shell: |
+    export NVM_DIR=/home/{{ ansible_user }}/.nvm
+    \. "$NVM_DIR/nvm.sh"
+    npm install -g gatsby-cli
