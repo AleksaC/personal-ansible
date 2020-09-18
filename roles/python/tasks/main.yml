@@ -1,12 +1,16 @@
-- name: Install openssl & zlib headers  # needed by pyenv to install python3.8
+- name: Install dependencies for building python
   apt:
     pkg:
       - libbz2-dev
+      - libc6-dev
       - libffi-dev
+      - libgdbm-dev
+      - liblzma-dev
       - libreadline-dev
       - libsqlite3-dev
       - libssl-dev
       - zlib1g-dev
+      - tk-dev
 
 - name: Install pyenv and change global python interpreter
   become: false
