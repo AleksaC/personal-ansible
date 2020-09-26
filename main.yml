@@ -1,27 +1,27 @@
 - hosts: all
   become: True
   roles:
-    - base
-    - chrome
-    - docker
-    - dotfiles
-    - gimp
-    - go
-    - jetbrains
-    - kate
-    - konsole
-    - misc
-    - nemo
-    - neovim
-    - node
-    - obs
-    - python
-    - rust
-    - slack
-    - spotify
-    - system
-    - virtualbox
-    - vlc
-    - vscode
-    - wrk
-    - zsh
+    - { role: base, tags: base  }
+    - { role: chrome, tags: chrome }
+    - { role: docker, tags: docker }
+    - { role: dotfiles, tags: dotfiles }
+    - { role: gimp, tags: gimp }
+    - { role: go, tags: go }
+    - { role: jetbrains, tags: jetbrains }
+    - { role: kate, tags: kate }
+    - { role: konsole, tags: konsole }
+    - { role: misc, tags: misc }
+    - { role: nemo, tags: nemo }
+    - { role: neovim, tags: neovim }
+    - { role: node, tags: node }
+    - { role: obs, tags: obs }
+    - { role: python, tags: python }
+    - { role: rust, tags: rust }
+    - { role: slack, tags: slack }
+    - { role: spotify, tags: spotify }
+    - { role: system, tags: system }
+    - { role: virtualbox, tags: virtualbox }
+    - { role: vlc, tags: vlc }
+    - { role: vscode, tags: vscode }
+    - { role: wrk, tags: wrk }
+    - { role: zsh, tags: zsh }
