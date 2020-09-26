@@ -14,3 +14,14 @@
 - name: Install VirtualBox
   apt:
     name: virtualbox-6.1
+
+- name: Accept VirtualBox Extension Pack license
+  debconf:
+    name: virtualbox-ext-pack
+    question: virtualbox-ext-pack/license
+    value: "true"
+    vtype: select
+
+- name: Install VirtualBox Extension Pack
+  apt:
+    name: virtualbox-ext-pack
