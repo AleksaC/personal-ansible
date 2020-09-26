@@ -23,6 +23,10 @@ To only run the playbook use:
 ```shell script
 ansible-playbook main.yml -K
 ```
+To only run certain roles use:
+```shell script
+ansible-playbook main.yml --tags role1 role2 -K
+```
 
 **Note**: For this purpose I've set up ansible in a virtual environment. It
 turned out to be a bit tricky. To see how I've done it take a look at `run.sh`.
