@@ -27,6 +27,12 @@
         dest: "{{ home }}/.p10k.zsh"
         state: link
 
+    - name: Symlink pypirc
+      file:
+        src: "{{ home }}/dotfiles/.pypirc"
+        dest: "{{ home }}/.pypirc"
+        state: link
+
     - name: Symlink pythonrc
       file:
         src: "{{ home }}/dotfiles/.pythonrc.py"
