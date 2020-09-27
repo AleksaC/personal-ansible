@@ -43,3 +43,35 @@
 
     - name: Run poetry installer
       shell: python3 /tmp/get-poetry.py -y
+
+- name: Install pipx and commonly used python CLIs
+  become: false
+  vars:
+    pyenv_root: /home/{{ ansible_user }}/.pyenv
+  block:
+    - name: Install pipx
+      shell: |
+        export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH"
+        eval "$(pyenv init -)"
+        python -m pip install --user pipx
+
+    - name: Run pipx ensurepath
+      shell: pipx ensurepath
+
+    - name: Install pre-commit
+      shell: pipx install pre-commit
+
+    - name: Install tox
+      shell: pipx install tox
+
+    - name: Install black
+      shell: pipx install black
+
+    - name: Install flake8
+      shell: pipx install flake8
+
+    - name: Install isort
+      shell: pipx install isort
+
+    - name: Install mypy
+      shell: pipx install mypy
