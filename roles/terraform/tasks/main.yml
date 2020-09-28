@@ -1,0 +1,10 @@
+- name: Download zipped terraform binary
+  get_url:
+    url: https://releases.hashicorp.com/terraform/0.13.3/terraform_0.13.3_linux_amd64.zip
+    dest: /tmp/terraform.zip
+
+- name: Unzip terraform binary
+  unarchive:
+    src: /tmp/terraform.zip
+    dest: "/usr/local/bin"
+    mode: 0555

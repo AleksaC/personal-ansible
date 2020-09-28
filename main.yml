@@ -20,6 +20,7 @@
     - { role: slack, tags: slack }
     - { role: spotify, tags: spotify }
     - { role: system, tags: system }
+    - { role: terraform, tags: terraform }
     - { role: virtualbox, tags: virtualbox }
     - { role: vlc, tags: vlc }
     - { role: vscode, tags: vscode }
