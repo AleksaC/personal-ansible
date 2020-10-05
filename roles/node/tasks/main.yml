@@ -17,6 +17,10 @@
     \. "$NVM_DIR/nvm.sh" &&
     nvm install 12.18.2
 
+- name: Install system node
+  apt:
+    name: nodejs
+
 - name: Add yarn signing key
   apt_key:
     url: https://dl.yarnpkg.com/debian/pubkey.gpg
