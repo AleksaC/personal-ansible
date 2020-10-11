@@ -50,3 +50,9 @@
         src: "{{ home }}/dotfiles/init.vim"
         dest: "{{ home }}/.config/nvim/init.vim"
         state: link
+
+    - name: Symlink .editorconfig
+      file:
+        src: "{{ home }}/dotfiles/.editorconfig"
+        dest: "{{ home }}/.editorconfig"
+        state: link
