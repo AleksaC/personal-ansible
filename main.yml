@@ -16,6 +16,7 @@
     - { role: node, tags: node }
     - { role: obs, tags: obs }
     - { role: python, tags: python }
+    - { role: ruby, tags: ruby }
     - { role: rust, tags: rust }
     - { role: slack, tags: slack }
     - { role: spotify, tags: spotify }

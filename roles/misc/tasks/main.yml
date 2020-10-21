@@ -37,3 +37,7 @@
 - name: Install htop
   apt:
     name: htop
+
+- name: Install CopyQ
+  apt:
+    name: copyq

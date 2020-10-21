@@ -40,7 +40,6 @@
         state: link
 
     - name: Ensure ~/.config/nvim exists
-      become: false
       file:
         name: "{{ home }}/.config/nvim"
         state: directory
