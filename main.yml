@@ -6,6 +6,7 @@
     - { role: docker, tags: docker }
     - { role: dotfiles, tags: dotfiles }
     - { role: gimp, tags: gimp }
+    - { role: git, tags: git }
     - { role: go, tags: go }
     - { role: jetbrains, tags: jetbrains }
     - { role: kate, tags: kate }

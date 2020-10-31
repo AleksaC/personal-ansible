@@ -1,0 +1,32 @@
+- name: Configure git
+  become: false
+  block:
+    - name: Set global git username
+      shell: git config --global user.name "AleksaC"
+
+    - name: Set global git email
+      shell: git config --global user.email "aleksacukovic1@gmail.com"
+
+    - name: Use rebase for pull by default and authostash on rebase
+      shell: |
+        git config --global pull.rebase true
+        git config --global rebase.autoStash true
+
+    - name: Create git init template directory
+      file:
+        name: "/home/{{ ansible_user }}/.git-template"
+        state: directory
+
+    - name: Set git init.templateDir
+      shell: git config --global init.templateDir ~/.git-template
+
+    - name: Add pre-commit to init template
+      shell: |
+        if command -v pre-commit &> /dev/null; then
+          pre-commit init-templatedir ~/.git-template
+        else
+          wget -O /tmp/pre-commit.pyz https://github.com/pre-commit/pre-commit/releases/download/v2.8.1/pre-commit-2.8.1.pyz
+          python3 /tmp/pre-commit.pyz init-templatedir ~/.git-template
+        fi
+      args:
+        executable: /bin/bash
