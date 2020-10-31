@@ -1,88 +1,68 @@
-#- name: Install Fira Code font
-  #apt:
-    #name: fonts-firacode
+- name: Install Fira Code font
+  apt:
+    name: fonts-firacode
 
-#- name: Install bat
-  #apt:
-    #deb: https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb
+- name: Install bat
+  apt:
+    deb: https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb
 
-#- name: Install unrar
-  #apt:
-    #name: unrar
+- name: Install unrar
+  apt:
+    name: unrar
 
-#- name: Install GNOME Tweak Tool
-  #apt:
-    #name: gnome-tweak-tool
+- name: Install GNOME Tweak Tool
+  apt:
+    name: gnome-tweak-tool
 
-#- name: Install dconf editor
-  #apt:
-    #name: dconf-editor
+- name: Install dconf editor
+  apt:
+    name: dconf-editor
 
-#- name: Move dock to bottom
-  #become: false
-  #dconf:
-    #key: "/org/gnome/shell/extensions/dash-to-dock/dock-position"
-    #value: "'BOTTOM'"
-    #state: present
-
-#- name: Center dock
-  #become: false
-  #dconf:
-    #key: "/org/gnome/shell/extensions/dash-to-dock/extend-height"
-    #value: "false"
-    #state: present
-
-#- name: Enable autohide
-  #become: false
-  #dconf:
-    #key: "/org/gnome/shell/extensions/dash-to-dock/dock-fixed"
-    #value: "false"
-    #state: present
-
-#- name: Enable autohide
-  #become: false
-  #dconf:
-    #key: "/org/gnome/shell/extensions/dash-to-dock/autohide"
-    #value: "true"
-    #state: present
-
-#- name: Set dark theme
-  #become: false
-  #dconf:
-    #key: "/org/gnome/desktop/interface/gtk-theme"
-    #value: "'Yaru-dark'"
-    #state: present
-
-#- name: Isolate workspaces in app switcher
-  #become: false
-  #dconf:
-    #key: "/org/gnome/shell/app-switcher/current-workspace-only"
-    #value: "true"
-    #state: present
-
-#- name: Isolate workspaces in dock
-  #become: false
-  #dconf:
-    #key: "/org/gnome/shell/extensions/dash-to-dock/isolate-workspaces"
-    #value: "true"
-    #state: present
-
-- name: Configure git
+- name: Move dock to bottom
   become: false
-  block:
-    - name: Set global git username
-      shell: git config --global user.name "AleksaC"
+  dconf:
+    key: "/org/gnome/shell/extensions/dash-to-dock/dock-position"
+    value: "'BOTTOM'"
+    state: present
 
-    - name: Set global git email
-      shell: git config --global user.email "aleksacukovic1@gmail.com"
+- name: Center dock
+  become: false
+  dconf:
+    key: "/org/gnome/shell/extensions/dash-to-dock/extend-height"
+    value: "false"
+    state: present
 
-    - name: Create git init template directory
-      file:
-        name: "/home/{{ ansible_user }}/.git-template"
-        state: directory
+- name: Enable autohide
+  become: false
+  dconf:
+    key: "/org/gnome/shell/extensions/dash-to-dock/dock-fixed"
+    value: "false"
+    state: present
 
-    - name: Set git init.templateDir
-      shell: git config --global init.templateDir ~/.git-template
+- name: Enable autohide
+  become: false
+  dconf:
+    key: "/org/gnome/shell/extensions/dash-to-dock/autohide"
+    value: "true"
+    state: present
 
-    - name: Add pre-commit to init template
-      shell: pre-commit init-templatedir ~/.git-template
+- name: Set dark theme
+  become: false
+  dconf:
+    key: "/org/gnome/desktop/interface/gtk-theme"
+    value: "'Yaru-dark'"
+    state: present
+
+- name: Isolate workspaces in app switcher
+  become: false
+  dconf:
+    key: "/org/gnome/shell/app-switcher/current-workspace-only"
+    value: "true"
+    state: present
+
+- name: Isolate workspaces in dock
+  become: false
+  dconf:
+    key: "/org/gnome/shell/extensions/dash-to-dock/isolate-workspaces"
+    value: "true"
+    state: present
