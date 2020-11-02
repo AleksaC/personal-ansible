@@ -14,6 +14,7 @@
     - { role: misc, tags: misc }
     - { role: nemo, tags: nemo }
     - { role: neovim, tags: neovim }
+    - { role: nginx, tags: nginx }
     - { role: node, tags: node }
     - { role: obs, tags: obs }
     - { role: python, tags: python }
