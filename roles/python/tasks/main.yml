@@ -75,3 +75,6 @@
 
     - name: Install mypy
       shell: pipx install mypy
+
+    - name: Install aws-cli
+      shell: pipx install awscli
