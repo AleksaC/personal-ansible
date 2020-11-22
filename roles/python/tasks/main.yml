@@ -78,3 +78,6 @@
 
     - name: Install aws-cli
       shell: pipx install awscli
+
+    - name: Install pyinstaller
+      shell: pipx install pyinstaller
