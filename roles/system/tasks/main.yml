@@ -66,3 +66,9 @@
     key: "/org/gnome/shell/extensions/dash-to-dock/isolate-workspaces"
     value: "true"
     state: present
+
+- name: Remove thunderbird
+  apt:
+    name: thunderbird
+    state: absent
+    purge: yes
