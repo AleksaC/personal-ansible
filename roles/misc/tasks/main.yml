@@ -1,27 +1,29 @@
-- name: Download protoc release
-  become: false
-  get_url:
-    url: https://github.com/protocolbuffers/protobuf/releases/download/v3.12.4/protoc-3.12.4-linux-x86_64.zip
-    dest: /tmp/protoc.zip
-    mode: 0666
+- name: Install protoc
+  block:
+    - name: Download protoc release
+      become: false
+      get_url:
+        url: https://github.com/protocolbuffers/protobuf/releases/download/v3.12.4/protoc-3.12.4-linux-x86_64.zip
+        dest: /tmp/protoc.zip
+        mode: 0666
 
-- name: Create directory where protoc will be unzipped
-  become: false
-  file:
-    path: /tmp/protoc
-    state: directory
+    - name: Create directory where protoc will be unzipped
+      become: false
+      file:
+        path: /tmp/protoc
+        state: directory
 
-- name: Unzip protoc binary
-  become: false
-  unarchive:
-    src: /tmp/protoc.zip
-    dest: /tmp/protoc
+    - name: Unzip protoc binary
+      become: false
+      unarchive:
+        src: /tmp/protoc.zip
+        dest: /tmp/protoc
 
-- name: Move protoc binary /usr/local/bin
-  copy:
-    src: /tmp/protoc/bin/protoc
-    dest: /usr/local/bin/protoc
-    mode: 0750
+    - name: Move protoc binary /usr/local/bin
+      copy:
+        src: /tmp/protoc/bin/protoc
+        dest: /usr/local/bin/protoc
+        mode: 0750
 
 - name: Install Insomnia client
   apt:
@@ -33,6 +35,10 @@
       - texlive
       - texlive-latex-extra
       - texlive-fonts-extra
+
+- name: Install xclip
+  apt:
+    name: xclip
 
 - name: Install htop
   apt:
