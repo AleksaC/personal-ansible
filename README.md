@@ -1,5 +1,5 @@
 # personal-ansible
-[![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](https://github.com/AleksaC/personal-ansible/blob/master/LICENSE)
+[![license](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/AleksaC/personal-ansible.svg?branch=master)](https://travis-ci.org/AleksaC/personal-ansible)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/AleksaC/rsa/blob/master/.pre-commit-config.yaml)
 
