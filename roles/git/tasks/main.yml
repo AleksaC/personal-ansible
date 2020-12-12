@@ -12,6 +12,9 @@
         git config --global pull.rebase true
         git config --global rebase.autoStash true
 
+    - name: Add git alias
+      shell: git config --global alias.git '!git'
+
     - name: Create git init template directory
       file:
         name: "/home/{{ ansible_user }}/.git-template"
