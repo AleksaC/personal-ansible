@@ -72,3 +72,7 @@
     name: thunderbird
     state: absent
     purge: yes
+
+- name: Install lm-sensors
+  apt:
+    name: lm-sensors
