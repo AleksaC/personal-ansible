@@ -24,11 +24,14 @@
         - /var/cache/snapd
         - /home/{{ username }}/snap
 
-    - name: purge snap
+    - name: Purge snap
       apt:
         pkg:
           - snap
           - gnome-software-plugin-snap
         state: absent
         purge: yes
+
+    - name: Remove dependencies that are no longer required
+      apt:
         autoremove: yes
