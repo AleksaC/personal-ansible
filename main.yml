@@ -23,7 +23,6 @@
     - { role: ruby, tags: ruby }
     - { role: rust, tags: rust }
     - { role: slack, tags: slack }
-    - { role: spotify, tags: spotify }
     - { role: system, tags: system }
     - { role: terraform, tags: terraform }
     - { role: utils, tags: utils }
