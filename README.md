@@ -9,17 +9,14 @@ Ansible playbooks for configuring my development environment.
 
 This repository contains ansible playbook for installing most of the programs I
 use on my personal machine. I use Ubuntu 20.04, but most of the roles here should
-work on other versions with little to no modification. To see which programs are
-installed look inside the roles directory as most of the programs are installed
-in a separate role and the ones that are not are either indispensible
-(like git, curl etc.) or mostly insignificant.
+work on other versions with little to no modification.
 
 ## Usage
-You can install everything with a single command on a clean install:
+To install everything with a single command:
 ```shell script
 wget -O - "https://raw.githubusercontent.com/AleksaC/personal-ansible/master/run.sh" | bash
 ```
-To only run the playbook use:
+If you want to set up ansible yourself and only run the playbook use:
 ```shell script
 ansible-playbook main.yml -K
 ```
