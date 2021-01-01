@@ -1,8 +1,10 @@
 - name: Install nginx
+  become: true
   apt:
     name: nginx
 
 - name: Disable nginx systemd service
+  become: true
   systemd:
     name: nginx
     enabled: no

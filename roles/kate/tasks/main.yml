@@ -1,8 +1,10 @@
 - name: Install kate
+  become: true
   apt:
     name: kate
 
 - name: Make kate default editor for text
+  become: true
   replace:
     path: /usr/share/applications/defaults.list
     regexp: org.gnome.gnome.desktop

@@ -1,15 +1,16 @@
 - name: Install Konsole
+  become: true
   apt:
     name: konsole
 
 - name: Set Konsole as default terminal emulator
+  become: true
   alternatives:
     name: x-terminal-emulator
     path: /usr/bin/konsole
 
 - name: Add Konsole configuration
-  become: false
   copy:
     src: files/Profile 1.profile
-    dest: "/home/{{ ansible_user }}/.local/share/konsole/"
+    dest: "/home/{{ username }}/.local/share/konsole/"
     mode: 0600

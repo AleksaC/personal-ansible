@@ -1,7 +1,6 @@
 - name: Download dotfiles
-  become: false
   vars:
-    home: /home/{{ ansible_user }}
+    home: /home/{{ username }}
   block:
     - name: Pull dotfiles repo
       git:

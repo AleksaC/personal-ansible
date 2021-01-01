@@ -1,13 +1,16 @@
-- name: Install ffmpeg
-  apt:
-    name: ffmpeg
-
-- name: Add OBS repository
-  apt_repository:
-    repo: ppa:obsproject/obs-studio
-    state: present
-    mode: 0666
-
 - name: Install OBS
-  apt:
-    name: obs-studio
+  become: true
+  block:
+    - name: Install ffmpeg
+      apt:
+        name: ffmpeg
+
+    - name: Add OBS repository
+      apt_repository:
+        repo: ppa:obsproject/obs-studio
+        state: present
+        mode: 0666
+
+    - name: Install OBS
+      apt:
+        name: obs-studio

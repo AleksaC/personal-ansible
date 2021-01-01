@@ -1,5 +1,4 @@
 - name: Install rust toolchain
-  become: false
   block:
     - name: Download rustup-init
       uri:

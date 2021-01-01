@@ -1,5 +1,4 @@
 - name: Install Jetbrains toolbox app
-  become: false
   block:
     - name: Download toolbox app
       get_url:
@@ -10,5 +9,5 @@
     - name: Untar tooblox app
       unarchive:
         src: /tmp/toolbox.tar.gz
-        dest: "/home/{{ ansible_user }}"
-        owner: "{{ ansible_user }}"
+        dest: "/home/{{ username }}"
+        owner: "{{ username }}"

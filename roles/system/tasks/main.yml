@@ -1,78 +1,56 @@
 - name: Install Fira Code font
+  become: true
   apt:
     name: fonts-firacode
 
-- name: Install bat
-  apt:
-    deb: https://github.com/sharkdp/bat/releases/download/v0.15.4/bat_0.15.4_amd64.deb
-
-- name: Install unrar
-  apt:
-    name: unrar
-
 - name: Install GNOME Tweak Tool
+  become: true
   apt:
     name: gnome-tweak-tool
 
 - name: Install dconf editor
+  become: true
   apt:
     name: dconf-editor
 
 - name: Move dock to bottom
-  become: false
   dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/dock-position"
     value: "'BOTTOM'"
     state: present
 
 - name: Center dock
-  become: false
   dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/extend-height"
     value: "false"
     state: present
 
 - name: Enable autohide
-  become: false
   dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/dock-fixed"
     value: "false"
     state: present
 
 - name: Enable autohide
-  become: false
   dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/autohide"
     value: "true"
     state: present
 
 - name: Set dark theme
-  become: false
   dconf:
     key: "/org/gnome/desktop/interface/gtk-theme"
     value: "'Yaru-dark'"
     state: present
 
 - name: Isolate workspaces in app switcher
-  become: false
   dconf:
     key: "/org/gnome/shell/app-switcher/current-workspace-only"
     value: "true"
     state: present
 
 - name: Isolate workspaces in dock
-  become: false
   dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/isolate-workspaces"
     value: "true"
     state: present
-
-- name: Remove thunderbird
-  apt:
-    name: thunderbird
-    state: absent
-    purge: yes
-
-- name: Install lm-sensors
-  apt:
-    name: lm-sensors

@@ -1,5 +1,4 @@
 - name: Install and configure Nemo file manager
-  become: false
   block:
     - name: Install Nemo
       become: true
@@ -8,13 +7,13 @@
 
     - name: Make sure ~/.config/autostart directory exists
       file:
-        name: /home/{{ ansible_user }}/.config/autostart
+        name: /home/{{ username }}/.config/autostart
         state: directory
 
     - name: Copy Nemo autostart desktop entry to ~/.config/autostart
       copy:
         src: files/nemo-autostart-with-gnome.desktop
-        dest: /home/{{ ansible_user }}/.config/autostart/nemo-autostart-with-gnome.desktop
+        dest: /home/{{ username }}/.config/autostart/nemo-autostart-with-gnome.desktop
         mode: 0666
 
     - name: Make Nemo default app for opening directories
@@ -27,11 +26,13 @@
         state: present
 
 - name: Remove gnome-icons config
+  become: true
   file:
     name: /usr/share/gnome-shell/extensions/desktop-icons@csoriano/
     state: absent
 
 - name: Uninstall gnome-icons
+  become: true
   apt:
     name: gnome-shell-extension-desktop-icons
     state: absent

@@ -1,4 +1,5 @@
 - name: Install git, curl and other essential packages
+  become: true
   apt:
     pkg:
       - git

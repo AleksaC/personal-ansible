@@ -1,0 +1,60 @@
+- name: Install command line utils xclip, jq, htop, bat, unrar
+  become: true
+  apt:
+    pkg:
+      - xclip
+      - jq
+      - htop
+      - bat
+      - unrar
+
+- name: Install fzf
+  block:
+    - name: Clone fzf repo
+      git:
+        repo: https://github.com/junegunn/fzf
+        dest: /home/{{ username }}/.fzf
+
+    - name: Install fzf
+      shell: /home/{{ username }}/.fzf/install
+
+- name: Install wrk
+  block:
+    - name: Install wrk dependencies
+      become: true
+      apt:
+        pkg:
+          - build-essential
+          - libssl-dev
+          - git
+
+    - name: Pull wrk repo
+      git:
+        repo: https://github.com/wg/wrk.git
+        dest: /tmp/wrk
+
+    - name: Make wrk binary
+      make:
+        chdir: /tmp/wrk
+
+    - name: Move wrk binary to /usr/local/bin
+      become: true
+      copy:
+        src: /tmp/wrk/wrk
+        dest: /usr/local/bin/wrk
+        mode: 555
+
+- name: Install lm-sensors
+  become: true
+  apt:
+    name: lm-sensors
+
+- name: Install Insomnia client
+  become: true
+  apt:
+    deb: https://updates.insomnia.rest/downloads/ubuntu/latest?app=com.insomnia.app
+
+- name: Install CopyQ
+  become: true
+  apt:
+    name: copyq

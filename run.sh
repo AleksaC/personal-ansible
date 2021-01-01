@@ -33,7 +33,7 @@ if ! command -v ansible-playbook > /dev/null; then
   source ./venv/bin/activate
 
   pip install wheel
-  pip install psutil ansible
+  pip install psutil "ansible>=2.9<2.11"
 
   mkdir py-apt
   sudo chown _apt py-apt
@@ -43,6 +43,8 @@ if ! command -v ansible-playbook > /dev/null; then
   sudo apt download python3-apt
   dpkg -x python3-apt_*.deb python-apt
   cp -r ./python-apt/usr/lib/python3/dist-packages/* ../venv/lib/python3.8/site-packages/
+
+  rm -rf ./python3-apt_*.dev ./python-apt
 
   cd ..
 fi

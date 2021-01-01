@@ -1,20 +1,20 @@
 - name: Install neovim
+  become: true
   apt:
     name: neovim
 
 - name: Install vim plugins
-  become: false
   block:
     - name: Create plug directory
       file:
-        name: "/home/{{ ansible_user }}/.local/share/nvim/site/autoload/"
+        name: "/home/{{ username }}/.local/share/nvim/site/autoload/"
         state: directory
         recurse: yes
 
     - name: Install Plug
       get_url:
         url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        dest: "/home/{{ ansible_user }}/.local/share/nvim/site/autoload/"
+        dest: "/home/{{ username }}/.local/share/nvim/site/autoload/"
         mode: 0666
 
     - name: Install neovim plugins

@@ -6,6 +6,7 @@
     mode: 0666
 
 - name: Untar to /usr/local
+  become: true
   unarchive:
     src: /tmp/go.tar.gz
     dest: /usr/local

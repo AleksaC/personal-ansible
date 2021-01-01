@@ -1,27 +1,33 @@
-- name: Add Oracle signing key
-  apt_key:
-    url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
-    state: present
+- name: Install Virtualbox
+  become: true
+  block:
+    - name: Add Oracle signing key
+      apt_key:
+        url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+        state: present
 
-- name: Add VirtualBox repository
-  apt_repository:
-    repo: >
-      deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian
-      {{ ansible_distribution_release }} contrib
-    state: present
-    mode: 0666
+    - name: Add VirtualBox repository
+      apt_repository:
+        repo: >
+          deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian
+          {{ ansible_distribution_release }} contrib
+        state: present
+        mode: 0666
 
-- name: Install VirtualBox
-  apt:
-    name: virtualbox-6.1
-
-- name: Accept VirtualBox Extension Pack license
-  debconf:
-    name: virtualbox-ext-pack
-    question: virtualbox-ext-pack/license
-    value: "true"
-    vtype: select
+    - name: Install VirtualBox
+      apt:
+        name: virtualbox-6.1
 
 - name: Install VirtualBox Extension Pack
-  apt:
-    name: virtualbox-ext-pack
+  become: true
+  block:
+    - name: Accept VirtualBox Extension Pack license
+      debconf:
+        name: virtualbox-ext-pack
+        question: virtualbox-ext-pack/license
+        value: "true"
+        vtype: select
+
+    - name: Install VirtualBox Extension Pack
+      apt:
+        name: virtualbox-ext-pack

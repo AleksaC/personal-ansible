@@ -1,21 +1,24 @@
-- name: Install Visual Studio Code dependencies
-  apt:
-    pkg:
-      - software-properties-common
-      - apt-transport-https
-      - wget
-
-- name: Import the Microsoft GPG key
-  apt_key:
-    url: https://packages.microsoft.com/keys/microsoft.asc
-    state: present
-
-- name: Add Visual Studio Code repository
-  apt_repository:
-    repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
-    state: present
-    mode: 0666
-
 - name: Install Visual Studio Code
-  apt:
-    name: code
+  become: true
+  block:
+    - name: Install Visual Studio Code dependencies
+      apt:
+        pkg:
+          - software-properties-common
+          - apt-transport-https
+          - wget
+
+    - name: Import the Microsoft GPG key
+      apt_key:
+        url: https://packages.microsoft.com/keys/microsoft.asc
+        state: present
+
+    - name: Add Visual Studio Code repository
+      apt_repository:
+        repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
+        state: present
+        mode: 0666
+
+    - name: Install Visual Studio Code
+      apt:
+        name: code

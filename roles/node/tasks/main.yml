@@ -1,5 +1,4 @@
 - name: Install nvm
-  become: false
   block:
     - name: Download nvm installer
       get_url:
@@ -11,13 +10,13 @@
       shell: /tmp/install.sh
 
 - name: Install node
-  become: false
   shell: >
-    export NVM_DIR=/home/{{ ansible_user }}/.nvm &&
+    export NVM_DIR=/home/{{ username }}/.nvm &&
     \. "$NVM_DIR/nvm.sh" &&
     nvm install 12.18.2
 
 - name: Install system node 14.x
+  become: true
   block:
     - name: Add NodeSource signing key
       apt_key:
@@ -38,11 +37,10 @@
 
     - name: Install node
       apt:
-        name:
-          - nodejs
-        update_cache: yes
+        name: nodejs
 
 - name: Install yarn
+  become: true
   block:
     - name: add yarn signing key
       apt_key:
@@ -59,10 +57,3 @@
       apt:
         name: yarn
         install_recommends: no
-
-- name: Install gatsby cli
-  become: false
-  shell: |
-    export NVM_DIR=/home/{{ ansible_user }}/.nvm
-    \. "$NVM_DIR/nvm.sh"
-    npm install -g gatsby-cli

@@ -1,4 +1,5 @@
 - name: Install dependencies for building python
+  become: true
   apt:
     pkg:
       - libbz2-dev
@@ -13,9 +14,8 @@
       - tk-dev
 
 - name: Install pyenv and change global python interpreter
-  become: false
   vars:
-    pyenv_root: /home/{{ ansible_user }}/.pyenv
+    pyenv_root: /home/{{ username }}/.pyenv
   block:
     - name: Clone pyenv repo
       git:
@@ -33,7 +33,6 @@
         pyenv global 3.8.5
 
 - name: Install poetry
-  become: false
   block:
     - name: Download poetry installer
       get_url:
@@ -45,9 +44,8 @@
       shell: python3 /tmp/get-poetry.py -y
 
 - name: Install pipx and commonly used python CLIs
-  become: false
   vars:
-    pyenv_root: /home/{{ ansible_user }}/.pyenv
+    pyenv_root: /home/{{ username }}/.pyenv
   block:
     - name: Install pipx
       shell: |

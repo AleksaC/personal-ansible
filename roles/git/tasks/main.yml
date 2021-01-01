@@ -1,5 +1,4 @@
 - name: Configure git
-  become: false
   block:
     - name: Set global git username
       shell: git config --global user.name "AleksaC"
@@ -17,7 +16,7 @@
 
     - name: Create git init template directory
       file:
-        name: "/home/{{ ansible_user }}/.git-template"
+        name: "/home/{{ username }}/.git-template"
         state: directory
 
     - name: Set git init.templateDir
