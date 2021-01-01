@@ -53,29 +53,16 @@
         eval "$(pyenv init -)"
         python -m pip install --user pipx
 
-    - name: Run pipx ensurepath
-      shell: pipx ensurepath
-
-    - name: Install pre-commit
-      shell: pipx install pre-commit
-
-    - name: Install tox
-      shell: pipx install tox
-
-    - name: Install black
-      shell: pipx install black
-
-    - name: Install flake8
-      shell: pipx install flake8
-
-    - name: Install isort
-      shell: pipx install isort
-
-    - name: Install mypy
-      shell: pipx install mypy
-
-    - name: Install aws-cli
-      shell: pipx install awscli
-
-    - name: Install pyinstaller
-      shell: pipx install pyinstaller
+    - name: Install python CLIs using pipx
+      shell: |
+        export PATH="$PATH:/home/{{ username }}/.local/bin"
+        pipx install {{ item }}
+      with_items:
+        - pre-commit
+        - tox
+        - black
+        - flake8
+        - mypy
+        - isort
+        - awscli
+        - pyinstaller
