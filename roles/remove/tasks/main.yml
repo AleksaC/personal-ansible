@@ -1,0 +1,34 @@
+- name: Remove thunderbird
+  become: true
+  apt:
+    name: thunderbird
+    state: absent
+    purge: yes
+
+- name: Remove snap
+  become: true
+  block:
+    - name: Delete all snap packages
+      shell: |
+        while [ $(snap list 2> /dev/null | wc -l) -ne 0 ]
+        do
+          snap list | tail -n +2 | cut -d " " -f1 | \
+           while read p; do snap remove --purge "$p" || true; done
+        done
+
+    - name: Delete snap directories
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /var/cache/snapd
+        - /home/{{ username }}/snap
+
+    - name: purge snap
+      apt:
+        pkg:
+          - snap
+          - gnome-software-plugin-snap
+        state: absent
+        purge: yes
+        autoremove: yes
