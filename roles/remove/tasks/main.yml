@@ -27,7 +27,7 @@
     - name: Purge snap
       apt:
         pkg:
-          - snap
+          - snapd
           - gnome-software-plugin-snap
         state: absent
         purge: yes
