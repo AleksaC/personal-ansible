@@ -58,6 +58,7 @@
         export PATH="$PATH:/home/{{ username }}/.local/bin"
         pipx install {{ item }}
       with_items:
+        - virtualenv
         - pre-commit
         - tox
         - black
