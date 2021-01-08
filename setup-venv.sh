@@ -7,7 +7,7 @@ vnv=virtualenv
 if ! command -v virtualenv > /dev/null; then
   sudo apt-get install python3-distutils
   wget -O /tmp/virtualenv.pyz https://bootstrap.pypa.io/virtualenv.pyz
-  vnv="python /tmp/virtualenv.pyz"
+  vnv="python3 /tmp/virtualenv.pyz"
 fi
 
 $vnv venv -p python3
