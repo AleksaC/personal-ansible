@@ -4,4 +4,6 @@
 venv
 
 *.deb
-python-apt
+py-apt
+
+.vagrant
