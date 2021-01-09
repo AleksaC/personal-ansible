@@ -13,23 +13,41 @@ work on other versions with little to no modification.
 
 ## Usage
 To install everything with a single command:
+
 ```shell script
 wget -O - "https://raw.githubusercontent.com/AleksaC/personal-ansible/master/run.sh" | bash
 ```
+
+This will clone this repo to `/tmp` which means that it will get deleted at some
+point. If you want to keep it around to use it for managing your configuration
+after the initial run, you can specify destination for cloning like so:
+
+```shell script
+wget -O - "https://raw.githubusercontent.com/AleksaC/personal-ansible/master/run.sh" | bash -s .
+```
+
 If you want to set up ansible yourself and only run the playbook use:
+
 ```shell script
 ansible-playbook main.yml -K
 ```
+
 To only run certain roles use:
+
 ```shell script
 ansible-playbook main.yml --tags role1 role2 -K
 ```
 
 **Note**: For this purpose I've set up ansible in a virtual environment. It
-turned out to be a bit tricky. To see how I've done it take a look at `run.sh`.
+turned out to be a bit tricky. To see how I've done it take a look at `setup-venv.sh`.
+I initially used ansible `2.9` and there were some changes in `2.10` which broke the
+playbook so after fixing it I pinned the ansible version to either `2.9` or `2.10`
+as I'm not sure if the playbook works on older versions and I'm not planning on
+updating it for newer versions.
+
 If you want to install ansbile through `apt` you need to change the
 `interpreter_python` to a system interpreter in `ansible.cfg`. You also need to
-install `psutil` as it is for some reason  required by `dconf` tasks.
+install `psutil` as it is required by `dconf` tasks.
 
 ## Contact
 - [Personal website](https://aleksac.me)
