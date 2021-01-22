@@ -7,3 +7,6 @@ venv
 py-apt
 
 .vagrant
+
+*.box
+packer_cache
