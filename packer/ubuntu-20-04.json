@@ -1,0 +1,40 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "guest_os_type": "Ubuntu_64",
+      "iso_url": "https://releases.ubuntu.com/20.04.1/ubuntu-20.04.1-live-server-amd64.iso",
+      "iso_checksum": "443511f6bf12402c12503733059269a2e10dec602916c0a75263e5d990f6bb93",
+      "ssh_timeout": "3h",
+      "ssh_username": "aleksa",
+      "ssh_password": "root",
+      "vm_name": "ubuntu-20.04",
+      "headless": true,
+      "http_directory": "http",
+      "shutdown_command": "echo 'root' | sudo -S shutdown -P now",
+      "disk_size": 20480,
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "4096"],
+        ["modifyvm", "{{.Name}}", "--cpus", "2"]
+      ],
+      "boot_wait": "5s",
+      "boot_command": [
+        "<enter><enter><f6><esc><wait>",
+        "autoinstall ds=nocloud-net;seedfrom=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
+        "<enter>"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": ["install-guest-additions.sh"]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "ubuntu-20-04.box"
+    }
+  ]
+}
