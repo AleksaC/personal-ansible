@@ -39,7 +39,7 @@ ansible-playbook main.yml --tags role1 role2 -K
 ```
 
 **Note**: For this purpose I've set up ansible in a virtual environment. It
-turned out to be a bit tricky. To see how I've done it take a look at `setup-venv.sh`.
+turned out to be a bit tricky. To see how I've done it take a look at `set-up-venv.sh`.
 I initially used ansible `2.9` and there were some changes in `2.10` which broke the
 playbook so after fixing it I pinned the ansible version to either `2.9` or `2.10`
 as I'm not sure if the playbook works on older versions and I'm not planning on
