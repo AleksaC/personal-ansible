@@ -34,7 +34,7 @@ if ! command -v ansible-playbook > /dev/null; then
   if [ -x venv/bin/ansible-playbook ]; then
     source venv/bin/activate
   else
-    source setup-venv.sh
+    source set-up-venv.sh
   fi
 fi
 
