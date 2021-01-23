@@ -12,10 +12,11 @@
       "headless": true,
       "http_directory": "http",
       "shutdown_command": "echo 'root' | sudo -S shutdown -P now",
-      "disk_size": 20480,
+      "disk_size": 30720,
       "vboxmanage": [
         ["modifyvm", "{{.Name}}", "--memory", "4096"],
-        ["modifyvm", "{{.Name}}", "--cpus", "2"]
+        ["modifyvm", "{{.Name}}", "--cpus", "2"],
+        ["modifyvm", "{{.Name}}", "--vram", "128"]
       ],
       "boot_wait": "5s",
       "boot_command": [
