@@ -38,4 +38,4 @@ if ! command -v ansible-playbook > /dev/null; then
   fi
 fi
 
-ansible-playbook main.yml -K
+ansible-playbook main.yml $(sudo -n true &> /dev/null || echo -K)
