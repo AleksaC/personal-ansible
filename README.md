@@ -49,6 +49,16 @@ If you want to install ansbile through `apt` you need to change the
 `interpreter_python` to a system interpreter in `ansible.cfg`. You also need to
 install `psutil` as it is required by `dconf` tasks.
 
+### Testing
+To test the playbooks from scratch in a virtualbox vm run the following commands:
+```shell script
+./vm/set-up-vm.sh
+./vm/run-command.sh 'wget -O - "https://raw.githubusercontent.com/AleksaC/personal-ansible/master/run.sh" | bash'
+```
+It will use packer and vagrant to provision a vm and run the command through ssh.
+You can provide any command to `run-command.sh`. You can also provide `--recreate`
+flag as a second argument to create a fresh vm.
+
 ## Contact
 - [Personal website](https://aleksac.me)
 - <a target="_blank" href="http://twitter.com/aleksa_c_"><img alt='Twitter followers' src="https://img.shields.io/twitter/follow/aleksa_c_.svg?style=social"></a>
