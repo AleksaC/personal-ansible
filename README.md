@@ -59,6 +59,9 @@ It will use packer and vagrant to provision a vm and run the command through ssh
 You can provide any command to `run-command.sh`. You can also provide `--recreate`
 flag as a second argument to create a fresh vm.
 
+You can also use `run-command.sh` to test changes since the repo directory is
+available in the vm as synced folder at `/personal-ansible`.
+
 ## Contact
 - [Personal website](https://aleksac.me)
 - <a target="_blank" href="http://twitter.com/aleksa_c_"><img alt='Twitter followers' src="https://img.shields.io/twitter/follow/aleksa_c_.svg?style=social"></a>
