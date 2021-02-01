@@ -18,3 +18,6 @@ if ! modinfo vboxsf &> /dev/null; then
 fi
 
 sudo adduser $USER vboxsf
+
+sudo umount /media/vboxga
+rm -rf $HOME/VBoxGuestAdditions.iso
