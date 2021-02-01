@@ -53,7 +53,8 @@ install `psutil` as it is required by `dconf` tasks.
 To test the playbooks from scratch in a virtualbox vm run the following commands:
 ```shell script
 ./vm/set-up-vm.sh
-./vm/run-command.sh 'wget -O - "https://raw.githubusercontent.com/AleksaC/personal-ansible/master/run.sh" | bash'
+./vm/run-command.sh \
+  'wget -O - "https://raw.githubusercontent.com/AleksaC/personal-ansible/master/run.sh" | bash'
 ```
 It will use packer and vagrant to provision a vm and run the command through ssh.
 You can provide any command to `run-command.sh`. You can also provide `--recreate`
