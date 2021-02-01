@@ -4,7 +4,8 @@ Vagrant.configure("2") do |config|
   config.ssh.username = "aleksa"
   config.ssh.password = "root"
 
-  config.vm.synced_folder "..", "/personal-ansible"
+  config.vm.synced_folder "..", "/personal-ansible", type: "rsync",
+    rsync__exclude: ["venv", ".git", ".idea", "vm/vagrant", "vm/packer_cache", "*.box"]
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
