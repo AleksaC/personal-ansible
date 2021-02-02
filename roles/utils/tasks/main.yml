@@ -8,6 +8,17 @@
       - bat
       - unrar
 
+- name: Make sure ~/.local exists
+  file:
+    path: /home/{{ username }}/.local
+    state: directory
+
+- name: Symlink batcat to bat if it's installed that way
+  file:
+    src: /usr/bin/batcat
+    dest: /home/{{ username }}/.local/bin/bat
+    state: link
+
 - name: Install fzf
   block:
     - name: Clone fzf repo
