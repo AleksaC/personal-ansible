@@ -28,6 +28,8 @@ if [ ! -t 0 ]; then
   git clone https://github.com/AleksaC/personal-ansible "$dest"
 
   cd "$dest"
+else
+  cd "$(dirname "$0")"
 fi
 
 if ! command -v ansible-playbook > /dev/null; then
