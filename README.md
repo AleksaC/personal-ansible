@@ -38,6 +38,9 @@ To only run certain roles use:
 ansible-playbook main.yml --tags role1 role2 -K
 ```
 
+You should run these commands as the main user of the system in order to have all
+the permissions and configurations properly set up.
+
 **Note**: For this purpose I've set up ansible in a virtual environment. It
 turned out to be a bit tricky. To see how I've done it take a look at `set-up-venv.sh`.
 I initially used ansible `2.9` and there were some changes in `2.10` which broke the
@@ -53,8 +56,7 @@ install `psutil` as it is required by `dconf` tasks.
 To test the playbooks from scratch in a virtualbox vm run the following commands:
 ```shell script
 ./vm/set-up-vm.sh
-./vm/run-command.sh \
-  'wget -O - "https://raw.githubusercontent.com/AleksaC/personal-ansible/master/run.sh" | bash'
+./vm/run-command.sh "/personal-ansible/run.sh"
 ```
 It will use packer and vagrant to provision a vm and run the command through ssh.
 You can provide any command to `run-command.sh`. You can also provide `--recreate`
