@@ -38,6 +38,12 @@
         dest: "{{ home }}/.pythonrc.py"
         state: link
 
+    - name: Symlink npmrc
+      file:
+        src: "{{ home }}/dotfiles/.npmrc"
+        dest: "{{ home }}/.npmrc"
+        state: link
+
     - name: Ensure ~/.config/nvim exists
       file:
         name: "{{ home }}/.config/nvim"
