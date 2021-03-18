@@ -29,6 +29,10 @@
     - name: Install fzf
       shell: /home/{{ username }}/.fzf/install
 
+- name: Install exa
+  shell: |
+    PATH="$HOME/.cargo/bin:$PATH" cargo install exa
+
 - name: Install wrk
   block:
     - name: Install wrk dependencies
