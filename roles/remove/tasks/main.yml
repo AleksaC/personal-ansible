@@ -5,6 +5,15 @@
     state: absent
     purge: yes
 
+- name: Remove totem
+  become: true
+  apt:
+    pkg:
+      - totem
+      - totem-plugins
+    state: absent
+    purge: yes
+
 - name: Remove snap
   become: true
   block:
@@ -32,6 +41,7 @@
         state: absent
         purge: yes
 
-    - name: Remove dependencies that are no longer required
-      apt:
-        autoremove: yes
+- name: Remove dependencies that are no longer required
+  become: true
+  apt:
+    autoremove: yes
