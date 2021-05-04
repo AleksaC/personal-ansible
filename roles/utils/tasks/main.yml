@@ -1,4 +1,4 @@
-- name: Install command line utils xclip, jq, htop, bat, unrar
+- name: Install command line utils xclip, jq, htop, bat, unrar, rlwrap
   become: true
   apt:
     pkg:
@@ -7,6 +7,12 @@
       - htop
       - bat
       - unrar
+      - rlwrap
+
+- name: Install socat
+  become: true
+  apt:
+    name: socat
 
 - name: Make sure ~/.local exists
   file:
