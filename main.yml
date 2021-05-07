@@ -4,6 +4,7 @@
   roles:
     - { role: base, tags: base  }
     - { role: chrome, tags: chrome }
+    - { role: discord, tags: discord }
     - { role: docker, tags: docker }
     - { role: dotfiles, tags: dotfiles }
     - { role: gimp, tags: gimp }
