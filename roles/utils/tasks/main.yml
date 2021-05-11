@@ -1,4 +1,4 @@
-- name: Install command line utils xclip, jq, htop, bat, unrar, rlwrap
+- name: Install command line utils xclip, jq, htop, bat, unrar, brotli, rlwrap
   become: true
   apt:
     pkg:
@@ -7,6 +7,7 @@
       - htop
       - bat
       - unrar
+      - brotli
       - rlwrap
 
 - name: Install hyperfine
