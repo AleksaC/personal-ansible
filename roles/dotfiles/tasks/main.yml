@@ -1,6 +1,4 @@
 - name: Download dotfiles
-  vars:
-    home: /home/{{ username }}
   block:
     - name: Pull dotfiles repo
       git:

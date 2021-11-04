@@ -51,10 +51,15 @@
   meta:
     reset_connection
 
+- name: Create cli-plugins directory
+  file:
+    name: "{{ home }}/.docker/cli-plugins"
+    state: directory
+    mode: 0775
+
 - name: Install docker compose
-  become: true
   get_url:
     url: "https://github.com/docker/compose/releases/download/v2.1.0/\
       docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
-    dest: /usr/local/bin/docker-compose
+    dest: "{{ home }}/.docker/cli-plugins/docker-compose"
     mode: a+x
