@@ -54,7 +54,7 @@
 - name: Install docker compose
   become: true
   get_url:
-    url: "https://github.com/docker/compose/releases/download/v2.0.1/\
+    url: "https://github.com/docker/compose/releases/download/v2.1.0/\
       docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
     dest: /usr/local/bin/docker-compose
     mode: a+x
