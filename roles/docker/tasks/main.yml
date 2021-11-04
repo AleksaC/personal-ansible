@@ -63,3 +63,12 @@
       docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
     dest: "{{ home }}/.docker/cli-plugins/docker-compose"
     mode: a+x
+
+- name: Add /etc/docker/daemon.json
+  become: true
+  copy:
+    src: files/daemon.json
+    dest: /etc/docker/daemon.json
+    mode: 0644
+  notify:
+    - "Restart docker service"
