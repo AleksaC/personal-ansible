@@ -15,6 +15,11 @@
   apt:
     deb: https://github.com/sharkdp/hyperfine/releases/download/v1.11.0/hyperfine_1.11.0_amd64.deb
 
+- name: Install traceroute
+  become: true
+  apt:
+    name: traceroute
+
 - name: Install socat
   become: true
   apt:
@@ -69,7 +74,7 @@
       copy:
         src: /tmp/wrk/wrk
         dest: /usr/local/bin/wrk
-        mode: 555
+        mode: 0555
 
 - name: Install lm-sensors
   become: true
