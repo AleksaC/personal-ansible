@@ -42,6 +42,12 @@
         dest: "{{ home }}/.npmrc"
         state: link
 
+    - name: Symlink terraformrc
+      file:
+        src: "{{ home }}/dotfiles/.terraformrc"
+        dest: "{{ home }}/.terraformrc"
+        state: link
+
     - name: Ensure ~/.config/nvim exists
       file:
         name: "{{ home }}/.config/nvim"
