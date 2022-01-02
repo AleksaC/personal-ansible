@@ -3,7 +3,7 @@
     username: "{{ ansible_user if ansible_version.full is version('2.10.0', '<') else ansible_user_id }}"
     home: /home/{{ username }}
   roles:
-    - { role: base, tags: base  }
+    - { role: base, tags: base }
     - { role: chrome, tags: chrome }
     - { role: discord, tags: discord }
     - { role: docker, tags: docker }
