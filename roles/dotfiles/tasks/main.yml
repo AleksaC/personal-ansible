@@ -14,9 +14,12 @@
     - name: Symlink .profile
       file:
         src: "{{ home }}/dotfiles/.profile"
-        dest: "{{ home }}/.profile"
+        dest: "{{ item }}"
         state: link
         force: yes
+      loop:
+        - "{{ home }}/.profile"
+        - "{{ home }}/.zprofile"
 
     - name: Symlink powerlevel 10k config
       file:
