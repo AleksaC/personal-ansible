@@ -13,6 +13,9 @@ fi
 $vnv venv -p python3
 source ./venv/bin/activate
 
+# needed by psutil
+sudo apt-get install python3-dev
+
 mkdir py-apt
 sudo chown _apt py-apt
 
