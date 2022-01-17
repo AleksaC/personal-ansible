@@ -18,3 +18,27 @@
         dest: "{{ kubectl_destination }}"
         checksum: "sha256:{{ checksum.content }}"
         mode: "a+x"
+
+- name: "Install helm"
+  become: true
+  block:
+    - name: "Install apt-transport-https"
+      ansible.builtin.apt:
+        pkg:
+          - "apt-transport-https"
+
+    - name: "Add helm signing key"
+      ansible.builtin.apt_key:
+        url: "https://baltocdn.com/helm/signing.asc"
+        state: "present"
+
+    - name: "Add helm repository"
+      ansible.builtin.apt_repository:
+        repo: "deb https://baltocdn.com/helm/stable/debian/ all main"
+        state: "present"
+        mode: "0666"
+
+    - name: "Install helm"
+      ansible.builtin.apt:
+        pkg:
+          - "helm"
