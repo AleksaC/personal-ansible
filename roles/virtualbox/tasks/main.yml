@@ -1,5 +1,6 @@
 - name: Install Virtualbox
   become: true
+  when: arch == "amd64"
   block:
     - name: Add Oracle signing key
       apt_key:
@@ -20,6 +21,7 @@
 
 - name: Install VirtualBox Extension Pack
   become: true
+  when: arch == "amd64"
   block:
     - name: Accept VirtualBox Extension Pack license
       debconf:

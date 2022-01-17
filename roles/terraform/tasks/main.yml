@@ -1,6 +1,7 @@
+# Set arch properly
 - name: Download zipped terraform binary
   get_url:
-    url: https://releases.hashicorp.com/terraform/1.0.9/terraform_1.0.9_linux_amd64.zip
+    url: https://releases.hashicorp.com/terraform/1.0.9/terraform_1.0.9_linux_{{ arch }}.zip
     dest: /tmp/terraform.zip
 
 - name: Unzip terraform binary

@@ -2,7 +2,8 @@
   block:
     - name: Download protoc release
       get_url:
-        url: https://github.com/protocolbuffers/protobuf/releases/download/v3.12.4/protoc-3.12.4-linux-x86_64.zip
+        url: "https://github.com/protocolbuffers/protobuf/releases/download/\
+          v3.12.4/protoc-3.12.4-linux-{{ ansible_architecture }}.zip"
         dest: /tmp/protoc.zip
         mode: 0666
 

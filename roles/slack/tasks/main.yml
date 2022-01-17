@@ -1,5 +1,6 @@
 - name: Install slack
   become: true
+  when: arch == "amd64" # Not available on arm
   apt:
     deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-4.4.3-amd64.deb
     state: present

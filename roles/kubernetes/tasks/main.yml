@@ -7,14 +7,14 @@
     # but for some reason it's throwing an error so this is a workaround
     - name: "Get kubectl checksum"
       ansible.builtin.uri:
-        url: "https://dl.k8s.io/{{ kubectl_version }}/bin/linux/amd64/kubectl.sha256"
+        url: "https://dl.k8s.io/{{ kubectl_version }}/bin/linux/{{ arch }}/kubectl.sha256"
         return_content: true
       register: "checksum"
 
     - name: "Install kubectl"
       become: true
       ansible.builtin.get_url:
-        url: "https://dl.k8s.io/release/{{ kubectl_version }}/bin/linux/amd64/kubectl"
+        url: "https://dl.k8s.io/release/{{ kubectl_version }}/bin/linux/{{ arch }}/kubectl"
         dest: "{{ kubectl_destination }}"
         checksum: "sha256:{{ checksum.content }}"
         mode: "a+x"

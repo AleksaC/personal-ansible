@@ -15,14 +15,10 @@
         url: https://download.docker.com/linux/ubuntu/gpg
         state: present
 
-    - name: Get CPU architecture
-      command: dpkg --print-architecture
-      register: arch
-
     - name: Add Docker repository
       apt_repository:
         repo: >-
-          deb [arch={{ arch.stdout }}] https://download.docker.com/linux/ubuntu
+          deb [arch={{ arch }}] https://download.docker.com/linux/ubuntu
           {{ ansible_distribution_release }} stable
         state: present
         mode: 0666
@@ -48,8 +44,7 @@
     append: yes
 
 - name: Reset ssh connection
-  meta:
-    reset_connection
+  meta: reset_connection
 
 - name: Create cli-plugins directory
   file:

@@ -15,7 +15,7 @@
 
     - name: Add Visual Studio Code repository
       apt_repository:
-        repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
+        repo: deb [arch={{ arch }}] https://packages.microsoft.com/repos/vscode stable main
         state: present
         mode: 0666
 

@@ -16,12 +16,8 @@
             path: /usr/local/go
             state: absent
 
-        - name: Get CPU architecture
-          command: dpkg --print-architecture
-          register: arch
-
         - name: Download go tar
           unarchive:
-            src: "https://dl.google.com/go/go{{ go_version }}.linux-{{ arch.stdout }}.tar.gz"
+            src: "https://dl.google.com/go/go{{ go_version }}.linux-{{ arch }}.tar.gz"
             dest: /usr/local
             remote_src: true
