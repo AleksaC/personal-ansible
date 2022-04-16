@@ -3,11 +3,6 @@
   apt:
     name: fonts-firacode
 
-- name: Install GNOME Tweak Tool
-  become: true
-  apt:
-    name: gnome-tweak-tool
-
 - name: Install dconf editor
   become: true
   apt:
