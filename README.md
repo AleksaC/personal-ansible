@@ -1,6 +1,6 @@
 # personal-ansible
 [![license](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Build Status](https://travis-ci.org/AleksaC/personal-ansible.svg?branch=master)](https://travis-ci.org/AleksaC/personal-ansible)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/AleksaC/personal-ansible/master.svg)](https://results.pre-commit.ci/latest/github/AleksaC/personal-ansible/master)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/AleksaC/rsa/blob/master/.pre-commit-config.yaml)
 
 Ansible playbooks for configuring my development environment.
