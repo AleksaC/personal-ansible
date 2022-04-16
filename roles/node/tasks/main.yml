@@ -15,30 +15,6 @@
     \. "$NVM_DIR/nvm.sh" &&
     nvm install 12.18.2
 
-- name: Install system node 14.x
-  become: true
-  block:
-    - name: Add NodeSource signing key
-      apt_key:
-        url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
-        state: present
-
-    - name: Add NodeSource node 14.x repository
-      apt_repository:
-        repo: deb https://deb.nodesource.com/node_14.x {{ ansible_lsb.codename }} main
-        filename: nodesource
-        state: present
-
-    - name: Add NodeSource node 14.x source repository
-      apt_repository:
-        repo: deb-src https://deb.nodesource.com/node_14.x {{ ansible_lsb.codename }} main
-        filename: nodesource
-        state: present
-
-    - name: Install node
-      apt:
-        name: nodejs
-
 - name: Install yarn
   become: true
   block:
