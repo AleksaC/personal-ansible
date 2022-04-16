@@ -5,6 +5,7 @@
     - name: Check if appropriate go is already installed
       register: installed_version
       ignore_errors: true
+      failed_when: false
       command: go version
 
     - name: Download and unarchive go toolchain
