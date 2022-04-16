@@ -49,3 +49,10 @@
     key: "/org/gnome/shell/extensions/dash-to-dock/isolate-workspaces"
     value: "true"
     state: present
+
+- name: "Disable sudo password for {{ username }} user"
+  become: true
+  ansible.builtin.lineinfile:
+    path: "/etc/sudoers"
+    regexp: "^{{ username }} ALL=(ALL) NOPASSWD: ALL$"
+    line: "{{ username }} ALL=(ALL) NOPASSWD: ALL"
