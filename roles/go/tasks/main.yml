@@ -1,6 +1,6 @@
 - name: Install go
   vars:
-    go_version: "1.17.3"
+    go_version: "1.18.1"
   block:
     - name: Check if appropriate go is already installed
       register: installed_version
