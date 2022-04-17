@@ -87,6 +87,56 @@
         mode: "a+x"
   tags: "wrk"
 
+- name: "Install hey"
+  become: true
+  ansible.builtin.get_url:
+    url: "https://hey-release.s3.us-east-2.amazonaws.com/hey_linux_amd64"
+    dest: "/usr/local/bin/hey"
+    mode: "a+x"
+  tags: "hey"
+
+- name: "Install packer"
+  become: true
+  block:
+    - name: "Add the HashiCorp GPG key"
+      ansible.builtin.apt_key:
+        url: "https://apt.releases.hashicorp.com/gpg"
+        state: "present"
+
+    - name: "Add the official HashiCorp Linux repository"
+      ansible.builtin.apt_repository:
+        repo: >-
+          deb [arch={{ arch }}] https://apt.releases.hashicorp.com
+          {{ ansible_distribution_release }} main
+        state: "present"
+        mode: "0666"
+
+    - name: "Install packer"
+      ansible.builtin.apt:
+        name: "packer"
+  tags: "packer"
+
+- name: "Install vagrant"
+  become: true
+  block:
+    - name: "Add the HashiCorp GPG key"
+      ansible.builtin.apt_key:
+        url: "https://apt.releases.hashicorp.com/gpg"
+        state: "present"
+
+    - name: "Add the official HashiCorp Linux repository"
+      ansible.builtin.apt_repository:
+        repo: >-
+          deb [arch={{ arch }}] https://apt.releases.hashicorp.com
+          {{ ansible_distribution_release }} main
+        state: "present"
+        mode: "0666"
+
+    - name: "Install vagrant"
+      ansible.builtin.apt:
+        name: "vagrant"
+  tags: "vagrant"
+
 - name: "Install protoc"
   become: true
   ansible.builtin.unarchive:
