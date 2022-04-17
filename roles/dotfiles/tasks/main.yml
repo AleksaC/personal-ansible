@@ -1,69 +1,69 @@
 - name: Download dotfiles
   block:
     - name: Pull dotfiles repo
-      git:
+      ansible.builtin.git:
         repo: https://github.com/AleksaC/dotfiles
         dest: "{{ home }}/dotfiles"
 
     - name: Symlink .zshrc
-      file:
+      ansible.builtin.file:
         src: "{{ home }}/dotfiles/.zshrc"
         dest: "{{ home }}/.zshrc"
         state: link
 
     - name: Symlink .profile
-      file:
+      ansible.builtin.file:
         src: "{{ home }}/dotfiles/.profile"
         dest: "{{ item }}"
         state: link
-        force: yes
+        force: true
       loop:
         - "{{ home }}/.profile"
         - "{{ home }}/.zprofile"
 
     - name: Symlink powerlevel 10k config
-      file:
+      ansible.builtin.file:
         src: "{{ home }}/dotfiles/.p10k.zsh"
         dest: "{{ home }}/.p10k.zsh"
         state: link
 
     - name: Symlink pypirc
-      file:
+      ansible.builtin.file:
         src: "{{ home }}/dotfiles/.pypirc"
         dest: "{{ home }}/.pypirc"
         state: link
 
     - name: Symlink pythonrc
-      file:
+      ansible.builtin.file:
         src: "{{ home }}/dotfiles/.pythonrc.py"
         dest: "{{ home }}/.pythonrc.py"
         state: link
 
     - name: Symlink npmrc
-      file:
+      ansible.builtin.file:
         src: "{{ home }}/dotfiles/.npmrc"
         dest: "{{ home }}/.npmrc"
         state: link
 
     - name: Symlink terraformrc
-      file:
+      ansible.builtin.file:
         src: "{{ home }}/dotfiles/.terraformrc"
         dest: "{{ home }}/.terraformrc"
         state: link
 
     - name: Ensure ~/.config/nvim exists
-      file:
+      ansible.builtin.file:
         name: "{{ home }}/.config/nvim"
         state: directory
 
     - name: Symlink init.vim
-      file:
+      ansible.builtin.file:
         src: "{{ home }}/dotfiles/init.vim"
         dest: "{{ home }}/.config/nvim/init.vim"
         state: link
 
     - name: Symlink .editorconfig
-      file:
+      ansible.builtin.file:
         src: "{{ home }}/dotfiles/.editorconfig"
         dest: "{{ home }}/.editorconfig"
         state: link

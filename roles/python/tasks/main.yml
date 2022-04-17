@@ -1,6 +1,6 @@
 - name: Install dependencies for building python
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       - libbz2-dev
       - libc6-dev
@@ -18,43 +18,43 @@
     pyenv_root: /home/{{ username }}/.pyenv
   block:
     - name: Clone pyenv repo
-      git:
+      ansible.builtin.git:
         repo: https://github.com/pyenv/pyenv.git
         dest: ~/.pyenv
 
     - name: Install python3.8
-      shell: >
+      ansible.builtin.shell: >
         export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH" &&
         pyenv install 3.8.5 -s
 
     - name: Change global python version
-      shell: >
+      ansible.builtin.shell: >
         export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH" &&
         pyenv global 3.8.5
 
 - name: Install poetry
   block:
     - name: Download poetry installer
-      get_url:
+      ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py
         dest: /tmp/get-poetry.py
         mode: 0666
 
     - name: Run poetry installer
-      shell: python3 /tmp/get-poetry.py -y
+      ansible.builtin.shell: python3 /tmp/get-poetry.py -y
 
 - name: Install pipx and commonly used python CLIs
   vars:
     pyenv_root: /home/{{ username }}/.pyenv
   block:
     - name: Install pipx
-      shell: |
+      ansible.builtin.shell: |
         export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH"
         eval "$(pyenv init -)"
         python -m pip install --user pipx
 
     - name: Install python CLIs using pipx
-      shell: |
+      ansible.builtin.shell: |
         export PATH="$PATH:/home/{{ username }}/.local/bin"
         pipx install {{ item }}
       with_items:

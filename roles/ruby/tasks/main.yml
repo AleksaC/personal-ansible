@@ -1,4 +1,4 @@
 - name: Install ruby
   become: true
-  apt:
+  ansible.builtin.apt:
     name: ruby-full

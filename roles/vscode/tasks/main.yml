@@ -2,23 +2,23 @@
   become: true
   block:
     - name: Install Visual Studio Code dependencies
-      apt:
+      ansible.builtin.apt:
         pkg:
           - software-properties-common
           - apt-transport-https
           - wget
 
     - name: Import the Microsoft GPG key
-      apt_key:
+      ansible.builtin.apt_key:
         url: https://packages.microsoft.com/keys/microsoft.asc
         state: present
 
     - name: Add Visual Studio Code repository
-      apt_repository:
+      ansible.builtin.apt_repository:
         repo: deb [arch={{ arch }}] https://packages.microsoft.com/repos/vscode stable main
         state: present
         mode: 0666
 
     - name: Install Visual Studio Code
-      apt:
+      ansible.builtin.apt:
         name: code

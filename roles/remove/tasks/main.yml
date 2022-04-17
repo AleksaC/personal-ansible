@@ -1,24 +1,24 @@
 - name: Remove thunderbird
   become: true
-  apt:
+  ansible.builtin.apt:
     name: thunderbird
     state: absent
-    purge: yes
+    purge: true
 
 - name: Remove totem
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       - totem
       - totem-plugins
     state: absent
-    purge: yes
+    purge: true
 
 - name: Remove snap
   become: true
   block:
     - name: Delete all snap packages
-      shell: |
+      ansible.builtin.shell: |
         while [ $(snap list 2> /dev/null | wc -l) -ne 0 ]
         do
           snap list | tail -n +2 | cut -d " " -f1 | \
@@ -26,7 +26,7 @@
         done
 
     - name: Delete snap directories
-      file:
+      ansible.builtin.file:
         path: "{{ item }}"
         state: absent
       with_items:
@@ -34,14 +34,14 @@
         - /home/{{ username }}/snap
 
     - name: Purge snap
-      apt:
+      ansible.builtin.apt:
         pkg:
           - snapd
           - gnome-software-plugin-snap
         state: absent
-        purge: yes
+        purge: true
 
 - name: Remove dependencies that are no longer required
   become: true
-  apt:
-    autoremove: yes
+  ansible.builtin.apt:
+    autoremove: true

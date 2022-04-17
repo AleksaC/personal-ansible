@@ -6,19 +6,19 @@
       register: installed_version
       ignore_errors: true
       failed_when: false
-      command: go version
+      ansible.builtin.command: go version
 
     - name: Download and unarchive go toolchain
       when: installed_version.rc == 0 and go_version not in installed_version.stdout
       become: true
       block:
         - name: Clear out previous installation
-          file:
+          ansible.builtin.file:
             path: /usr/local/go
             state: absent
 
         - name: Download go tar
-          unarchive:
+          ansible.builtin.unarchive:
             src: "https://dl.google.com/go/go{{ go_version }}.linux-{{ arch }}.tar.gz"
             dest: /usr/local
             remote_src: true

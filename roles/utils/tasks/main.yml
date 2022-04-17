@@ -1,6 +1,6 @@
 - name: Install command line utils xclip, jq, htop, bat, unrar, brotli, rlwrap
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       - xclip
       - jq
@@ -12,22 +12,22 @@
 
 - name: Install hyperfine
   become: true
-  apt:
+  ansible.builtin.apt:
     deb: "https://github.com/sharkdp/hyperfine/releases/download/\
-      v1.12.0/hyperfine_1.12.0_{{ arch }}.deb"
+      v1.13.0/hyperfine_1.13.0_{{ arch }}.deb"
 
 - name: Install traceroute
   become: true
-  apt:
+  ansible.builtin.apt:
     name: traceroute
 
 - name: Install socat
   become: true
-  apt:
+  ansible.builtin.apt:
     name: socat
 
 - name: Make sure ~/.local exists
-  file:
+  ansible.builtin.file:
     path: /home/{{ username }}/.local
     state: directory
 
@@ -36,13 +36,13 @@
     batcat_path: "/usr/bin/batcat"
   block:
     - name: "Check if batcat exists"
-      stat:
+      ansible.builtin.stat:
         path: "{{ batcat_path }}"
       register: "batcat"
 
     - name: "Symlink batcat"
       when: "batcat.stat.exists"
-      file:
+      ansible.builtin.file:
         src: "{{ batcat_path }}"
         dest: "/home/{{ username }}/.local/bin/bat"
         state: "link"
@@ -50,29 +50,29 @@
 - name: Install fzf
   block:
     - name: Clone fzf repo
-      git:
+      ansible.builtin.git:
         repo: https://github.com/junegunn/fzf
         dest: /home/{{ username }}/.fzf
 
     - name: Install fzf
-      shell: /home/{{ username }}/.fzf/install
+      ansible.builtin.shell: /home/{{ username }}/.fzf/install
 
 - name: Install exa
-  shell: |
+  ansible.builtin.shell: |
     PATH="$HOME/.cargo/bin:$PATH" cargo install exa
 
 - name: Install wrk
   block:
     - name: Install wrk dependencies
       become: true
-      apt:
+      ansible.builtin.apt:
         pkg:
           - build-essential
           - libssl-dev
           - git
 
     - name: Pull wrk repo
-      git:
+      ansible.builtin.git:
         repo: https://github.com/wg/wrk.git
         dest: /tmp/wrk
 
@@ -82,22 +82,22 @@
 
     - name: Move wrk binary to /usr/local/bin
       become: true
-      copy:
+      ansible.builtin.copy:
         src: /tmp/wrk/wrk
         dest: /usr/local/bin/wrk
         mode: 0555
 
 - name: Install lm-sensors
   become: true
-  apt:
+  ansible.builtin.apt:
     name: lm-sensors
 
 - name: Install Insomnia client
   become: true
-  apt:
+  ansible.builtin.apt:
     deb: https://updates.insomnia.rest/downloads/ubuntu/latest?app=com.insomnia.app
 
 - name: Install CopyQ
   become: true
-  apt:
+  ansible.builtin.apt:
     name: copyq

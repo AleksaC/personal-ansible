@@ -1,32 +1,32 @@
 - name: Install protoc
   block:
     - name: Download protoc release
-      get_url:
+      ansible.builtin.get_url:
         url: "https://github.com/protocolbuffers/protobuf/releases/download/\
           v3.12.4/protoc-3.12.4-linux-{{ ansible_architecture }}.zip"
         dest: /tmp/protoc.zip
         mode: 0666
 
     - name: Create directory where protoc will be unzipped
-      file:
+      ansible.builtin.file:
         path: /tmp/protoc
         state: directory
 
     - name: Unzip protoc binary
-      unarchive:
+      ansible.builtin.unarchive:
         src: /tmp/protoc.zip
         dest: /tmp/protoc
 
     - name: Move protoc binary /usr/local/bin
       become: true
-      copy:
+      ansible.builtin.copy:
         src: /tmp/protoc/bin/protoc
         dest: /usr/local/bin/protoc
         mode: 0555
 
 - name: Install texlive
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       - texlive
       - texlive-latex-extra

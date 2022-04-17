@@ -1,4 +1,4 @@
 - name: Install gimp
   become: true
-  apt:
+  ansible.builtin.apt:
     name: gimp

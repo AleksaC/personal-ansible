@@ -3,16 +3,16 @@
   when: arch == "amd64"
   block:
     - name: Add Google signing key
-      apt_key:
+      ansible.builtin.apt_key:
         url: https://dl.google.com/linux/linux_signing_key.pub
         state: present
 
     - name: Add Google Chrome repository
-      apt_repository:
+      ansible.builtin.apt_repository:
         repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main
         state: present
         mode: 0666
 
     - name: Install Google Chrome
-      apt:
+      ansible.builtin.apt:
         name: google-chrome-stable

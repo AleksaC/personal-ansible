@@ -1,16 +1,16 @@
 - name: Install nvm
   block:
     - name: Download nvm installer
-      get_url:
+      ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh
         dest: /tmp
         mode: 0744
 
     - name: Install nvm
-      shell: /tmp/install.sh
+      ansible.builtin.shell: /tmp/install.sh
 
 - name: Install node
-  shell: >
+  ansible.builtin.shell: >
     export NVM_DIR=/home/{{ username }}/.nvm &&
     \. "$NVM_DIR/nvm.sh" &&
     nvm install 12.18.2
@@ -19,17 +19,17 @@
   become: true
   block:
     - name: add yarn signing key
-      apt_key:
+      ansible.builtin.apt_key:
         url: https://dl.yarnpkg.com/debian/pubkey.gpg
         state: present
 
     - name: add yarn repository
-      apt_repository:
+      ansible.builtin.apt_repository:
         repo: deb https://dl.yarnpkg.com/debian/ stable main
         state: present
         mode: 0666
 
     - name: install yarn
-      apt:
+      ansible.builtin.apt:
         name: yarn
-        install_recommends: no
+        install_recommends: false

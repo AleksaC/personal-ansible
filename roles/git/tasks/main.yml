@@ -1,29 +1,29 @@
 - name: Configure git
   block:
     - name: Set global git username
-      shell: git config --global user.name "AleksaC"
+      ansible.builtin.shell: git config --global user.name "AleksaC"
 
     - name: Set global git email
-      shell: git config --global user.email "aleksacukovic1@gmail.com"
+      ansible.builtin.shell: git config --global user.email "aleksacukovic1@gmail.com"
 
     - name: Use rebase for pull by default and authostash on rebase
-      shell: |
+      ansible.builtin.shell: |
         git config --global pull.rebase true
         git config --global rebase.autoStash true
 
     - name: Add git alias
-      shell: git config --global alias.git '!git'
+      ansible.builtin.shell: git config --global alias.git '!git'
 
     - name: Create git init template directory
-      file:
+      ansible.builtin.file:
         name: "/home/{{ username }}/.git-template"
         state: directory
 
     - name: Set git init.templateDir
-      shell: git config --global init.templateDir ~/.git-template
+      ansible.builtin.shell: git config --global init.templateDir ~/.git-template
 
     - name: Add pre-commit to init template
-      shell: |
+      ansible.builtin.shell: |
         if command -v pre-commit &> /dev/null; then
           pre-commit init-templatedir ~/.git-template
         else

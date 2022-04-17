@@ -1,11 +1,11 @@
 - name: Install Fira Code font
   become: true
-  apt:
+  ansible.builtin.apt:
     name: fonts-firacode
 
 - name: Install dconf editor
   become: true
-  apt:
+  ansible.builtin.apt:
     name: dconf-editor
 
 - name: Move dock to bottom
