@@ -2,3 +2,4 @@
   become: true
   ansible.builtin.apt:
     update_cache: true
+  tags: "update_apt_cache"

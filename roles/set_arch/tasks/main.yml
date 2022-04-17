@@ -1,8 +1,11 @@
 # deb packages use format different than ansible_architecture
-- name: "Get CPU architecture"
-  ansible.builtin.command: "dpkg --print-architecture"
-  register: "arch"
+- name: "Set arch"
+  block:
+    - name: "Get CPU architecture"
+      ansible.builtin.command: "dpkg --print-architecture"
+      register: "arch"
 
-- name: "Set CPU architecture fact"
-  ansible.builtin.set_fact:
-    arch: "{{ arch.stdout }}"
+    - name: "Set CPU architecture fact"
+      ansible.builtin.set_fact:
+        arch: "{{ arch.stdout }}"
+  tags: "set_arch"
