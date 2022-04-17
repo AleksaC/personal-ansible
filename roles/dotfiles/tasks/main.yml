@@ -1,69 +1,71 @@
-- name: Download dotfiles
+- name: "Set up dotfiles"
+  vars:
+    dotfiles_dir: "{{ home }}/dotfiles"
   block:
-    - name: Pull dotfiles repo
+    - name: "Pull dotfiles repo"
       ansible.builtin.git:
-        repo: https://github.com/AleksaC/dotfiles
-        dest: "{{ home }}/dotfiles"
+        repo: "https://github.com/AleksaC/dotfiles"
+        dest: "{{ dotfiles_dir }}"
 
-    - name: Symlink .zshrc
+    - name: "Symlink .zshrc"
       ansible.builtin.file:
         src: "{{ home }}/dotfiles/.zshrc"
         dest: "{{ home }}/.zshrc"
-        state: link
+        state: "link"
 
-    - name: Symlink .profile
+    - name: "Symlink .profile"
       ansible.builtin.file:
-        src: "{{ home }}/dotfiles/.profile"
+        src: "{{ dotfiles_dir }}/.profile"
         dest: "{{ item }}"
-        state: link
+        state: "link"
         force: true
       loop:
         - "{{ home }}/.profile"
         - "{{ home }}/.zprofile"
 
-    - name: Symlink powerlevel 10k config
+    - name: "Symlink powerlevel 10k config"
       ansible.builtin.file:
-        src: "{{ home }}/dotfiles/.p10k.zsh"
+        src: "{{ dotfiles_dir }}/.p10k.zsh"
         dest: "{{ home }}/.p10k.zsh"
-        state: link
+        state: "link"
 
-    - name: Symlink pypirc
+    - name: "Symlink pypirc"
       ansible.builtin.file:
-        src: "{{ home }}/dotfiles/.pypirc"
+        src: "{{ dotfiles_dir }}/.pypirc"
         dest: "{{ home }}/.pypirc"
         state: link
 
-    - name: Symlink pythonrc
+    - name: "Symlink pythonrc"
       ansible.builtin.file:
-        src: "{{ home }}/dotfiles/.pythonrc.py"
+        src: "{{ dotfiles_dir }}/.pythonrc.py"
         dest: "{{ home }}/.pythonrc.py"
-        state: link
+        state: "link"
 
-    - name: Symlink npmrc
+    - name: "Symlink npmrc"
       ansible.builtin.file:
-        src: "{{ home }}/dotfiles/.npmrc"
+        src: "{{ dotfiles_dir }}/.npmrc"
         dest: "{{ home }}/.npmrc"
-        state: link
+        state: "link"
 
-    - name: Symlink terraformrc
+    - name: "Symlink terraformrc"
       ansible.builtin.file:
-        src: "{{ home }}/dotfiles/.terraformrc"
+        src: "{{ dotfiles_dir }}/.terraformrc"
         dest: "{{ home }}/.terraformrc"
-        state: link
+        state: "link"
 
-    - name: Ensure ~/.config/nvim exists
+    - name: "Ensure ~/.config/nvim exists"
       ansible.builtin.file:
         name: "{{ home }}/.config/nvim"
-        state: directory
+        state: "directory"
 
-    - name: Symlink init.vim
+    - name: "Symlink init.vim"
       ansible.builtin.file:
-        src: "{{ home }}/dotfiles/init.vim"
+        src: "{{ dotfiles_dir }}/init.vim"
         dest: "{{ home }}/.config/nvim/init.vim"
         state: link
 
-    - name: Symlink .editorconfig
+    - name: "Symlink .editorconfig"
       ansible.builtin.file:
-        src: "{{ home }}/dotfiles/.editorconfig"
+        src: "{{ dotfiles_dir }}/.editorconfig"
         dest: "{{ home }}/.editorconfig"
         state: link
