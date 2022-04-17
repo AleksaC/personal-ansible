@@ -1,21 +1,21 @@
-- name: Install neovim
+- name: "Install neovim"
   become: true
   ansible.builtin.apt:
-    name: neovim
+    name: "neovim"
 
-- name: Install vim plugins
+- name: "Install vim plugins"
   block:
-    - name: Create plug directory
+    - name: "Create plug directory"
       ansible.builtin.file:
         name: "/home/{{ username }}/.local/share/nvim/site/autoload/"
-        state: directory
+        state: "directory"
         recurse: true
 
-    - name: Install Plug
+    - name: "Install Plug"
       ansible.builtin.get_url:
-        url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        url: "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
         dest: "/home/{{ username }}/.local/share/nvim/site/autoload/"
         mode: 0666
 
-    - name: Install neovim plugins
-      ansible.builtin.shell: nvim +PlugInstall +qall --headless
+    - name: "Install neovim plugins"
+      ansible.builtin.command: "nvim +PlugInstall +qall --headless"

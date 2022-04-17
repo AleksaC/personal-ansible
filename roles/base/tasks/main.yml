@@ -1,8 +1,8 @@
-- name: Install git, curl and other essential packages
+- name: "Install git, curl and other essential packages"
   become: true
   ansible.builtin.apt:
     pkg:
-      - git
-      - curl
-      - build-essential
-    update_cache: true
+      - "git"
+      - "curl"
+      - "build-essential"
+      - "wget"

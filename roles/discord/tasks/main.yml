@@ -1,5 +1,5 @@
-- name: Install discord
+- name: "Install discord"
   become: true
   ansible.builtin.apt:
-    deb: https://discord.com/api/download?platform=linux&format=deb
-    state: present
+    deb: "https://discord.com/api/download?platform=linux&format=deb"
+    state: "present"

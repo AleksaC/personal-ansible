@@ -57,6 +57,7 @@
       ansible.builtin.file:
         name: "{{ home }}/.config/nvim"
         state: "directory"
+        mode: "0755"
 
     - name: "Symlink init.vim"
       ansible.builtin.file:
@@ -74,6 +75,7 @@
       ansible.builtin.file:
         name: "{{ home }}/.config/kitty"
         state: "directory"
+        mode: "0755"
 
     - name: "Symlink kitty.conf"
       ansible.builtin.file:

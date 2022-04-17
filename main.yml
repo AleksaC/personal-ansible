@@ -1,33 +1,31 @@
-- hosts: all
+- hosts: "all"
   vars:
     username: "{{ ansible_user if ansible_version.full is version('2.10.0', '<') else ansible_user_id }}"
-    home: /home/{{ username }}
+    home: "/home/{{ username }}"
   roles:
-    - { role: base, tags: base }
-    - { role: chrome, tags: chrome }
-    - { role: discord, tags: discord }
-    - { role: docker, tags: docker }
-    - { role: dotfiles, tags: dotfiles }
-    - { role: gimp, tags: gimp }
-    - { role: git, tags: git }
-    - { role: go, tags: go }
-    - { role: kate, tags: kate }
-    - { role: kitty, tags: kitty }
-    - { role: kubernetes, tags: kubernetes }
-    - { role: misc, tags: misc }
-    - { role: neovim, tags: neovim }
-    - { role: nginx, tags: nginx }
-    - { role: node, tags: node }
-    - { role: obs, tags: obs }
-    - { role: python, tags: python }
-    - { role: remove, tags: remove }
-    - { role: ruby, tags: ruby }
-    - { role: rust, tags: rust }
-    - { role: slack, tags: slack }
-    - { role: system, tags: system }
-    - { role: terraform, tags: terraform }
-    - { role: utils, tags: utils }
-    - { role: virtualbox, tags: virtualbox }
-    - { role: vlc, tags: vlc }
-    - { role: vscode, tags: vscode }
-    - { role: zsh, tags: zsh }
+    - { role: "base", tags: "base" }
+    - { role: "chrome", tags: "chrome" }
+    - { role: "discord", tags: "discord" }
+    - { role: "docker", tags: "docker" }
+    - { role: "dotfiles", tags: "dotfiles" }
+    - { role: "gimp", tags: "gimp" }
+    - { role: "git", tags: "git" }
+    - { role: "go", tags: "go" }
+    - { role: "kate", tags: "kate" }
+    - { role: "kitty", tags: "kitty" }
+    - { role: "kubernetes", tags: "kubernetes" }
+    - { role: "latex", tags: "latex" }
+    - { role: "neovim", tags: "neovim" }
+    - { role: "node", tags: "node" }
+    - { role: "obs", tags: "obs" }
+    - { role: "python", tags: "python" }
+    - { role: "remove", tags: "remove" }
+    - { role: "rust", tags: "rust" }
+    - { role: "slack", tags: "slack" }
+    - { role: "system", tags: "system" }
+    - { role: "terraform", tags: "terraform" }
+    - { role: "utils", tags: "utils" }
+    - { role: "virtualbox", tags: "virtualbox" }
+    - { role: "vlc", tags: "vlc" }
+    - { role: "vscode", tags: "vscode" }
+    - { role: "zsh", tags: "zsh" }

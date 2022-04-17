@@ -1,16 +1,16 @@
-- name: Install OBS
+- name: "Install OBS"
   become: true
   block:
-    - name: Install ffmpeg
+    - name: "Install ffmpeg"
       ansible.builtin.apt:
-        name: ffmpeg
+        name: "ffmpeg"
 
-    - name: Add OBS repository
+    - name: "Add OBS repository"
       ansible.builtin.apt_repository:
-        repo: ppa:obsproject/obs-studio
-        state: present
+        repo: "ppa:obsproject/obs-studio"
+        state: "present"
         mode: 0666
 
-    - name: Install OBS
+    - name: "Install OBS"
       ansible.builtin.apt:
-        name: obs-studio
+        name: "obs-studio"

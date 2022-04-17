@@ -1,11 +1,11 @@
-- name: Install kate
+- name: "Install kate"
   become: true
   ansible.builtin.apt:
-    name: kate
+    name: "kate"
 
-- name: Make kate default editor for text
+- name: "Make kate default editor for text"
   become: true
   ansible.builtin.replace:
-    path: /usr/share/applications/defaults.list
-    regexp: org.gnome.gnome.desktop
-    ansible.builtin.replace: org.kde.kate.desktop
+    path: "/usr/share/applications/defaults.list"
+    regexp: "org.gnome.gnome.desktop"
+    replace: "org.kde.kate.desktop"

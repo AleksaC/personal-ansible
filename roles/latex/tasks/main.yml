@@ -1,0 +1,7 @@
+- name: "Install texlive"
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - "texlive"
+      - "texlive-latex-extra"
+      - "texlive-fonts-extra"

@@ -1,35 +1,42 @@
-- name: Install nvm
+- name: "Install fnm"
+  vars:
+    fnm_version: "v1.31.0"
   block:
-    - name: Download nvm installer
-      ansible.builtin.get_url:
-        url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh
-        dest: /tmp
-        mode: 0744
+    - name: "Ensure ~/.fnm exists"
+      ansible.builtin.file:
+        name: "{{ home }}/.fnm"
+        state: "directory"
+        mode: "0755"
 
-    - name: Install nvm
-      ansible.builtin.shell: /tmp/install.sh
+    - name: "Download and unarchive fnm binary"
+      ansible.builtin.unarchive:
+        src: "https://github.com/Schniz/fnm/releases/download/{{ fnm_version }}/fnm-linux.zip"
+        dest: "{{ home }}/.fnm"
+        remote_src: true
+        mode: "a+x"
 
-- name: Install node
-  ansible.builtin.shell: >
-    export NVM_DIR=/home/{{ username }}/.nvm &&
-    \. "$NVM_DIR/nvm.sh" &&
-    nvm install 12.18.2
+- name: "Install node 16.x"
+  ansible.builtin.shell: |
+    set -e;
+    export PATH="$HOME/.fnm:$PATH"
+    eval "`fnm env`"
+    fnm install 16.14.2
 
-- name: Install yarn
+- name: "Install yarn"
   become: true
   block:
-    - name: add yarn signing key
+    - name: "Add yarn signing key"
       ansible.builtin.apt_key:
-        url: https://dl.yarnpkg.com/debian/pubkey.gpg
-        state: present
+        url: "https://dl.yarnpkg.com/debian/pubkey.gpg"
+        state: "present"
 
-    - name: add yarn repository
+    - name: "Add yarn repository"
       ansible.builtin.apt_repository:
-        repo: deb https://dl.yarnpkg.com/debian/ stable main
-        state: present
-        mode: 0666
+        repo: "deb https://dl.yarnpkg.com/debian/ stable main"
+        state: "present"
+        mode: "0666"
 
-    - name: install yarn
+    - name: "Install yarn"
       ansible.builtin.apt:
-        name: yarn
+        name: "yarn"
         install_recommends: false

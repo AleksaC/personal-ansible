@@ -5,8 +5,12 @@
   block:
     - name: "Create kitty directory"
       ansible.builtin.file:
-        path: "{{ kitty_dir }}"
+        path: "{{ item }}"
         state: "directory"
+        mode: "0755"
+      with_items:
+        - "{{ kitty_dir | dirname }}"
+        - "{{ kitty_dir }}"
 
     - name: "Download kitty"
       ansible.builtin.unarchive:

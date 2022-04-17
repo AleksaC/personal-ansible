@@ -1,2 +1,3 @@
 dependencies:
   - role: "set_arch"
+  - role: "update_apt_cache"

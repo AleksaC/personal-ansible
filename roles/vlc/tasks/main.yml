@@ -1,4 +1,4 @@
-- name: Install VLC
+- name: "Install VLC"
   become: true
   ansible.builtin.apt:
-    name: vlc
+    name: "vlc"

@@ -1,24 +1,25 @@
-- name: Install go
+- name: "Install go"
   vars:
     go_version: "1.18.1"
   block:
-    - name: Check if appropriate go is already installed
-      register: installed_version
+    # no-changed-when
+    - name: "Check if appropriate go is already installed"
+      register: "installed_version"
       ignore_errors: true
       failed_when: false
-      ansible.builtin.command: go version
+      ansible.builtin.command: "go version"
 
-    - name: Download and unarchive go toolchain
-      when: installed_version.rc == 0 and go_version not in installed_version.stdout
+    - name: "Download and unarchive go toolchain"
+      when: "installed_version.rc == 0 and go_version not in installed_version.stdout"
       become: true
       block:
-        - name: Clear out previous installation
+        - name: "Clear out previous installation"
           ansible.builtin.file:
-            path: /usr/local/go
-            state: absent
+            path: "/usr/local/go"
+            state: "absent"
 
-        - name: Download go tar
+        - name: "Download go tar"
           ansible.builtin.unarchive:
             src: "https://dl.google.com/go/go{{ go_version }}.linux-{{ arch }}.tar.gz"
-            dest: /usr/local
+            dest: "/usr/local"
             remote_src: true

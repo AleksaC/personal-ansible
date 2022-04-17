@@ -1,69 +1,64 @@
-- name: Install dependencies for building python
+- name: "Install dependencies for building python"
   become: true
   ansible.builtin.apt:
     pkg:
-      - libbz2-dev
-      - libc6-dev
-      - libffi-dev
-      - libgdbm-dev
-      - liblzma-dev
-      - libreadline-dev
-      - libsqlite3-dev
-      - libssl-dev
-      - zlib1g-dev
-      - tk-dev
+      - "libbz2-dev"
+      - "libc6-dev"
+      - "libffi-dev"
+      - "libgdbm-dev"
+      - "liblzma-dev"
+      - "libreadline-dev"
+      - "libsqlite3-dev"
+      - "libssl-dev"
+      - "zlib1g-dev"
+      - "tk-dev"
 
-- name: Install pyenv and change global python interpreter
+- name: "Install pyenv and change global python interpreter"
   vars:
-    pyenv_root: /home/{{ username }}/.pyenv
+    pyenv_root: "{{ home }}/.pyenv"
+    python_version: "3.10.4"
   block:
-    - name: Clone pyenv repo
+    - name: "Clone pyenv repo"
       ansible.builtin.git:
-        repo: https://github.com/pyenv/pyenv.git
-        dest: ~/.pyenv
+        repo: "https://github.com/pyenv/pyenv.git"
+        dest: "{{ pyenv_root }}"
 
-    - name: Install python3.8
-      ansible.builtin.shell: >
-        export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH" &&
-        pyenv install 3.8.5 -s
-
-    - name: Change global python version
-      ansible.builtin.shell: >
-        export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH" &&
-        pyenv global 3.8.5
-
-- name: Install poetry
-  block:
-    - name: Download poetry installer
-      ansible.builtin.get_url:
-        url: https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py
-        dest: /tmp/get-poetry.py
-        mode: 0666
-
-    - name: Run poetry installer
-      ansible.builtin.shell: python3 /tmp/get-poetry.py -y
-
-- name: Install pipx and commonly used python CLIs
-  vars:
-    pyenv_root: /home/{{ username }}/.pyenv
-  block:
-    - name: Install pipx
+    - name: "Install python3.10"
       ansible.builtin.shell: |
+        set -e
         export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH"
+        pyenv install {{ python_version }} -s
+
+    - name: "Change global python version"
+      ansible.builtin.shell: |
+        set -e
+        export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH" &&
+        pyenv global {{ python_version }}
+
+- name: "Install pipx and commonly used python CLI tools"
+  vars:
+    pyenv_root: "{{ home }}/.pyenv"
+  block:
+    - name: "Install pipx"
+      ansible.builtin.shell: |
+        set -e
+        export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH"
+        eval "$(pyenv init --path)"
         eval "$(pyenv init -)"
         python -m pip install --user pipx
 
-    - name: Install python CLIs using pipx
+    - name: "Install python CLIs using pipx"
       ansible.builtin.shell: |
+        set -e
         export PATH="$PATH:/home/{{ username }}/.local/bin"
         pipx install {{ item }}
       with_items:
-        - virtualenv
-        - pre-commit
-        - tox
-        - black
-        - flake8
-        - mypy
-        - isort
-        - awscli
-        - pyinstaller
+        - "virtualenv"
+        - "pre-commit"
+        - "tox"
+        - "black"
+        - "flake8"
+        - "mypy"
+        - "isort"
+        - "awscli"
+        - "pyinstaller"

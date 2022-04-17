@@ -1,54 +1,54 @@
-- name: Install Fira Code font
+- name: "Install Fira Code font"
   become: true
   ansible.builtin.apt:
-    name: fonts-firacode
+    name: "fonts-firacode"
 
-- name: Install dconf editor
+- name: "Install dconf editor"
   become: true
   ansible.builtin.apt:
-    name: dconf-editor
+    name: "dconf-editor"
 
-- name: Move dock to bottom
-  dconf:
+- name: "Move dock to bottom"
+  community.general.dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/dock-position"
     value: "'BOTTOM'"
-    state: present
+    state: "present"
 
-- name: Center dock
-  dconf:
+- name: "Center dock"
+  community.general.dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/extend-height"
     value: "false"
-    state: present
+    state: "present"
 
-- name: Enable autohide
-  dconf:
+- name: "Enable autohide"
+  community.general.dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/dock-fixed"
     value: "false"
-    state: present
+    state: "present"
 
-- name: Enable autohide
-  dconf:
+- name: "Enable autohide"
+  community.general.dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/autohide"
     value: "true"
-    state: present
+    state: "present"
 
-- name: Set dark theme
-  dconf:
+- name: "Set dark theme"
+  community.general.dconf:
     key: "/org/gnome/desktop/interface/gtk-theme"
     value: "'Yaru-dark'"
-    state: present
+    state: "present"
 
-- name: Isolate workspaces in app switcher
-  dconf:
+- name: "Isolate workspaces in app switcher"
+  community.general.dconf:
     key: "/org/gnome/shell/app-switcher/current-workspace-only"
     value: "true"
-    state: present
+    state: "present"
 
-- name: Isolate workspaces in dock
-  dconf:
+- name: "Isolate workspaces in dock"
+  community.general.dconf:
     key: "/org/gnome/shell/extensions/dash-to-dock/isolate-workspaces"
     value: "true"
-    state: present
+    state: "present"
 
 - name: "Disable sudo password for {{ username }} user"
   become: true

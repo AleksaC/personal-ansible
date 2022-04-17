@@ -1,38 +1,38 @@
-- name: Install zsh
+- name: "Install zsh"
   become: true
   ansible.builtin.apt:
-    name: zsh
+    name: "zsh"
 
-- name: Make zsh default shell
+- name: "Make zsh default shell"
   become: true
   ansible.builtin.user:
     name: "{{ username }}"
-    ansible.builtin.shell: /bin/zsh
+    shell: "/bin/zsh"
 
-- name: Install powerline fonts
+- name: "Install powerline fonts"
   become: true
   ansible.builtin.apt:
-    name: fonts-powerline
+    name: "fonts-powerline"
 
-- name: Install and configure ohmyzsh
+- name: "Install and configure ohmyzsh"
   block:
-    - name: Install ohmyzsh
+    - name: "Install ohmyzsh"
       ansible.builtin.git:
-        repo: https://github.com/ohmyzsh/ohmyzsh
+        repo: "https://github.com/ohmyzsh/ohmyzsh"
         dest: "/home/{{ username }}/.oh-my-zsh"
 
-    - name: Install zsh autosuggestions plugin
+    - name: "Install zsh autosuggestions plugin"
       ansible.builtin.git:
-        repo: https://github.com/zsh-users/zsh-autosuggestions
+        repo: "https://github.com/zsh-users/zsh-autosuggestions"
         dest: "/home/{{ username }}/.oh-my-zsh/plugins/zsh-autosuggestions"
 
-    - name: Install powerlevel10k theme
+    - name: "Install powerlevel10k theme"
       ansible.builtin.git:
-        repo: https://github.com/romkatv/powerlevel10k.git
+        repo: "https://github.com/romkatv/powerlevel10k.git"
         dest: "/home/{{ username }}/.oh-my-zsh/custom/themes/powerlevel10k"
         depth: 1
 
-    - name: Install zsh syntax highlighting plugin
+    - name: "Install zsh syntax highlighting plugin"
       ansible.builtin.git:
-        repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+        repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
         dest: "/home/{{ username }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
