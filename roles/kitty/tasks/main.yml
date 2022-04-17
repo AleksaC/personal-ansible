@@ -1,0 +1,22 @@
+- name: "Install kitty and set it as default terminal emulator"
+  vars:
+    kitty_version: "0.25.0"
+    kitty_dir: "{{ home }}/.local/kitty.app"
+  block:
+    - name: "Create kitty directory"
+      ansible.builtin.file:
+        path: "{{ kitty_dir }}"
+        state: "directory"
+
+    - name: "Download kitty"
+      ansible.builtin.unarchive:
+        src: "https://github.com/kovidgoyal/kitty/releases/download/\
+          v{{ kitty_version }}/kitty-{{ kitty_version }}-{{ ansible_architecture }}.txz"
+        dest: "{{ kitty_dir }}"
+        remote_src: true
+
+    - name: "Set kitty as default terminal emulator"
+      become: true
+      community.general.alternatives:
+        name: "x-terminal-emulator"
+        path: "{{ kitty_dir }}/bin/kitty"

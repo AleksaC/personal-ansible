@@ -69,3 +69,14 @@
         src: "{{ dotfiles_dir }}/.editorconfig"
         dest: "{{ home }}/.editorconfig"
         state: link
+
+    - name: "Ensure ~/.config/kitty exists"
+      ansible.builtin.file:
+        name: "{{ home }}/.config/kitty"
+        state: "directory"
+
+    - name: "Symlink kitty.conf"
+      ansible.builtin.file:
+        src: "{{ dotfiles_dir }}/kitty.conf"
+        dest: "{{ home }}/.config/kitty/kitty.conf"
+        state: "link"

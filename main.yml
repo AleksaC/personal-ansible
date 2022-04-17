@@ -12,7 +12,7 @@
     - { role: git, tags: git }
     - { role: go, tags: go }
     - { role: kate, tags: kate }
-    - { role: konsole, tags: konsole }
+    - { role: kitty, tags: kitty }
     - { role: kubernetes, tags: kubernetes }
     - { role: misc, tags: misc }
     - { role: neovim, tags: neovim }
