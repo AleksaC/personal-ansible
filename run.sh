@@ -33,4 +33,6 @@ fi
 
 source set-up-venv.sh
 
+ansible-galaxy install -r requirements.yml
+
 ansible-playbook main.yml $(sudo -n true &> /dev/null || echo -K)
