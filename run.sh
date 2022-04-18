@@ -14,14 +14,13 @@ trap restore_config ERR
 
 sudo sed -i 's/1/0/g' /etc/apt/apt.conf.d/20auto-upgrades
 
-sudo apt-get update
-
 if [ ! -t 0 ]; then
   dest="${1:-/tmp}"
   [[ "$dest" == */  ]] && dest="${dest::-1}"
   dest="$dest/personal-ansible"
 
   if ! command -v git > /dev/null; then
+    sudo apt-get update
     sudo apt-get install -y git
   fi
 

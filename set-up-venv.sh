@@ -9,6 +9,8 @@ if [ -x venv/bin/ansible-playbook ]; then
 else
   vnv=virtualenv
 
+  sudo apt-get update
+
   if ! command -v virtualenv > /dev/null; then
     sudo apt-get install -y python3-distutils
     if [ ! -f /tmp/virtualenv.pyz ]; then
@@ -20,7 +22,6 @@ else
   $vnv venv -p python3
   source ./venv/bin/activate
 
-  sudo apt-get update
   # needed by psutil
   sudo apt-get install -y python3-dev
 
