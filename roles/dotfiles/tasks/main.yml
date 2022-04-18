@@ -29,6 +29,12 @@
         dest: "{{ home }}/.p10k.zsh"
         state: "link"
 
+    - name: "Symlink fzf.zsh"
+      ansible.builtin.file:
+        src: "{{ dotfiles_dir }}/.fzf.zsh"
+        dest: "{{ home }}/.fzf.zsh"
+        state: "link"
+
     - name: "Symlink pypirc"
       ansible.builtin.file:
         src: "{{ dotfiles_dir }}/.pypirc"
