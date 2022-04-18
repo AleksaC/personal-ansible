@@ -56,7 +56,9 @@
 
 - name: "Install exa"
   ansible.builtin.shell: |
-    PATH="$HOME/.cargo/bin:$PATH" cargo install exa
+    set -e
+    . "$HOME/.cargo/env"
+    cargo install exa
   tags: "exa"
 
 - name: "Install wrk"
