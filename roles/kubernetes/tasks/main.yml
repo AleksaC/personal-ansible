@@ -24,8 +24,7 @@
   block:
     - name: "Install apt-transport-https"
       ansible.builtin.apt:
-        pkg:
-          - "apt-transport-https"
+        name: "apt-transport-https"
 
     - name: "Add helm signing key"
       ansible.builtin.apt_key:
@@ -42,3 +41,27 @@
       ansible.builtin.apt:
         pkg:
           - "helm"
+
+- name: "Install kubectx"
+  become: true
+  vars:
+    kubectx_version: "0.9.4"
+  ansible.builtin.unarchive:
+    src: "https://github.com/ahmetb/kubectx/releases/download/\
+      v{{ kubectx_version }}/kubectx_v{{ kubectx_version }}_linux_{{ ansible_architecture }}.tar.gz"
+    dest: "/usr/local/bin"
+    remote_src: true
+    include: "kubectx"
+    mode: "a+x"
+
+- name: "Install kubns"
+  become: true
+  vars:
+    kubens_version: "0.9.4"
+  ansible.builtin.unarchive:
+    src: "https://github.com/ahmetb/kubectx/releases/download/\
+      v{{ kubens_version }}/kubens_v{{ kubens_version }}_linux_{{ ansible_architecture }}.tar.gz"
+    dest: "/usr/local/bin"
+    remote_src: true
+    include: "kubens"
+    mode: "a+x"
