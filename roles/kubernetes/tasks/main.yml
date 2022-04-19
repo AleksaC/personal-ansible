@@ -65,3 +65,15 @@
     remote_src: true
     include: "kubens"
     mode: "a+x"
+
+- name: "Install stern"
+  become: true
+  vars:
+    stern_version: "1.21.0"
+  ansible.builtin.unarchive:
+    src: "https://github.com/stern/stern/releases/download/\
+      v{{ stern_version }}/stern_{{ stern_version }}_linux_{{ arch }}.tar.gz"
+    dest: "/usr/local/bin"
+    remote_src: true
+    include: "stern"
+    mode: "a+x"
