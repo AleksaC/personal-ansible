@@ -1,0 +1,18 @@
+- name: "Install Brave"
+  become: true
+  when: "arch == 'amd64'"
+  block:
+    - name: "Add Brave signing key"
+      ansible.builtin.apt_key:
+        url: "https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg"
+        state: "present"
+
+    - name: "Add Brave apt repository"
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"
+        state: "present"
+        mode: "0666"
+
+    - name: "Install Brave"
+      ansible.builtin.apt:
+        name: "brave-browser"
