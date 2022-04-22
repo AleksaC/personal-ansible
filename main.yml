@@ -25,6 +25,7 @@
     - { role: "slack", tags: "slack" }
     - { role: "system", tags: "system" }
     - { role: "terraform", tags: "terraform" }
+    - { role: "ubuntu_standard", tags: "ubuntu_standard" }
     - { role: "utils", tags: "utils" }
     - { role: "virtualbox", tags: "virtualbox" }
     - { role: "vlc", tags: "vlc" }

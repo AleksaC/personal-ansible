@@ -1,0 +1,7 @@
+# useful packages present in ubuntu standard installation but missing in minimal
+- name: "Install usb creator and transmission"
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - "usb-creator-gtk"
+      - "transmission"
