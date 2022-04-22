@@ -9,6 +9,7 @@
     - { role: "discord", tags: "discord" }
     - { role: "docker", tags: "docker" }
     - { role: "dotfiles", tags: "dotfiles" }
+    - { role: "firefox", tags: "firefox" }
     - { role: "gimp", tags: "gimp" }
     - { role: "git", tags: "git" }
     - { role: "go", tags: "go" }
