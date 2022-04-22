@@ -24,3 +24,10 @@
       community.general.alternatives:
         name: "x-terminal-emulator"
         path: "{{ kitty_dir }}/bin/kitty"
+
+    - name: "Create kitty desktop entry"
+      become: true
+      ansible.builtin.template:
+        src: "kitty.desktop.j2"
+        dest: "/usr/share/applications/kitty.desktop"
+        mode: "0644"
