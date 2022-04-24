@@ -44,14 +44,22 @@
         state: "link"
 
 - name: "Install fzf"
+  vars:
+    fzf_dir: "/home/{{ username }}/.fzf"
+    fzf_version: "0.30.0"
   block:
     - name: "Clone fzf repo"
       ansible.builtin.git:
         repo: https://github.com/junegunn/fzf
-        dest: /home/{{ username }}/.fzf
+        dest: "{{ fzf_dir }}"
+        version: "refs/tags/{{ fzf_version }}"
 
-    - name: "Install fzf"
-      ansible.builtin.command: "/home/{{ username }}/.fzf/install"
+    - name: "Download fzf binary"
+      ansible.builtin.unarchive:
+        src: "https://github.com/junegunn/fzf/releases/download/{{ fzf_version }}/fzf-{{ fzf_version }}-linux_{{ arch }}.tar.gz"
+        dest: "{{ fzf_dir }}/bin"
+        creates: "{{ fzf_dir }}/bin/fzf"
+        remote_src: true
   tags: "fzf"
 
 - name: "Install exa"
