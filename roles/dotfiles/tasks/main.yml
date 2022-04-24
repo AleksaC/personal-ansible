@@ -2,7 +2,7 @@
   vars:
     dotfiles_dir: "{{ home }}/dotfiles"
   block:
-    - name: "Pull dotfiles repo"
+    - name: "Pull dotfiles repo"  # noqa git-latest
       ansible.builtin.git:
         repo: "https://github.com/AleksaC/dotfiles"
         dest: "{{ dotfiles_dir }}"

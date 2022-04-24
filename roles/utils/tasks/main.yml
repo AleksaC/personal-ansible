@@ -62,7 +62,7 @@
         remote_src: true
   tags: "fzf"
 
-- name: "Install exa"
+- name: "Install exa"  # noqa no-changed-when
   ansible.builtin.shell: |
     set -e
     . "$HOME/.cargo/env"

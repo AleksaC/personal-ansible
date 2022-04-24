@@ -2,8 +2,7 @@
   vars:
     go_version: "1.18.1"
   block:
-    # no-changed-when
-    - name: "Check if appropriate go is already installed"
+    - name: "Check if appropriate go is already installed"  # noqa no-changed-when
       register: "installed_version"
       ignore_errors: true
       failed_when: false

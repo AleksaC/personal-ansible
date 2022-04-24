@@ -1,7 +1,7 @@
 # deb packages use format different than ansible_architecture
 - name: "Set arch"
   block:
-    - name: "Get CPU architecture"
+    - name: "Get CPU architecture"  # noqa no-changed-when
       ansible.builtin.command: "dpkg --print-architecture"
       register: "arch"
 

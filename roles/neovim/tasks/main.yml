@@ -17,5 +17,5 @@
         dest: "/home/{{ username }}/.local/share/nvim/site/autoload/"
         mode: 0666
 
-    - name: "Install neovim plugins"
+    - name: "Install neovim plugins"  # noqa: no-changed-when
       ansible.builtin.command: "nvim +PlugInstall +qall --headless"

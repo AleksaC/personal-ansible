@@ -17,19 +17,21 @@
   vars:
     pyenv_root: "{{ home }}/.pyenv"
     python_version: "3.10.4"
+    pyenv_version: "2.2.5"
   block:
     - name: "Clone pyenv repo"
       ansible.builtin.git:
         repo: "https://github.com/pyenv/pyenv.git"
         dest: "{{ pyenv_root }}"
+        version: "refs/tags/v{{ pyenv_version }}"
 
-    - name: "Install python3.10"
+    - name: "Install python3.10"  # noqa no-changed-when
       ansible.builtin.shell: |
         set -e
         export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH"
         pyenv install {{ python_version }} -s
 
-    - name: "Change global python version"
+    - name: "Change global python version"  # noqa no-changed-when
       ansible.builtin.shell: |
         set -e
         export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH" &&
@@ -39,7 +41,7 @@
   vars:
     pyenv_root: "{{ home }}/.pyenv"
   block:
-    - name: "Install pipx"
+    - name: "Install pipx"  # noqa no-changed-when
       ansible.builtin.shell: |
         set -e
         export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH"
@@ -47,7 +49,7 @@
         eval "$(pyenv init -)"
         python -m pip install --user pipx
 
-    - name: "Install python CLIs using pipx"
+    - name: "Install python CLIs using pipx"  # noqa no-changed-when
       ansible.builtin.shell: |
         set -e
         export PATH="$PATH:/home/{{ username }}/.local/bin"

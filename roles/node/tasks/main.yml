@@ -15,7 +15,7 @@
         remote_src: true
         mode: "a+x"
 
-- name: "Install node 16.x"
+- name: "Install node 16.x"  # noqa no-changed-when
   ansible.builtin.shell: |
     set -e;
     export PATH="$HOME/.fnm:$PATH"

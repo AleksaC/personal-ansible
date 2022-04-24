@@ -6,5 +6,5 @@
         dest: "/tmp/rustup-init"
         mode: "a+x"
 
-    - name: "Install rust toolchain using rustup-init"
+    - name: "Install rust toolchain using rustup-init"  # noqa no-changed-when
       ansible.builtin.command: "/tmp/rustup-init -y"

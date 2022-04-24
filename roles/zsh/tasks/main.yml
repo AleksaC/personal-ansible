@@ -16,7 +16,7 @@
 
 - name: "Install and configure ohmyzsh"
   block:
-    - name: "Install ohmyzsh"
+    - name: "Install ohmyzsh"  # noqa git-latest
       ansible.builtin.git:
         repo: "https://github.com/ohmyzsh/ohmyzsh"
         dest: "/home/{{ username }}/.oh-my-zsh"
@@ -25,14 +25,19 @@
       ansible.builtin.git:
         repo: "https://github.com/zsh-users/zsh-autosuggestions"
         dest: "/home/{{ username }}/.oh-my-zsh/plugins/zsh-autosuggestions"
+        version: "refs/tags/v0.7.0"
+        depth: 1
 
     - name: "Install powerlevel10k theme"
       ansible.builtin.git:
         repo: "https://github.com/romkatv/powerlevel10k.git"
         dest: "/home/{{ username }}/.oh-my-zsh/custom/themes/powerlevel10k"
+        version: "refs/tags/v1.16.1"
         depth: 1
 
     - name: "Install zsh syntax highlighting plugin"
       ansible.builtin.git:
         repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
         dest: "/home/{{ username }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
+        version: "c5ce001"
+        depth: 1
