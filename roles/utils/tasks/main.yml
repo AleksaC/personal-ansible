@@ -70,31 +70,42 @@
   tags: "exa"
 
 - name: "Install wrk"
+  vars:
+    wrk_version: "4.2.0"
   block:
-    - name: "Install wrk build dependencies"
-      become: true
-      ansible.builtin.apt:
-        pkg:
-          - "build-essential"
-          - "libssl-dev"
-          - "git"
+    - name: "Check if wrk is already installed"  # noqa no-changed-when
+      register: "wrk"
+      ignore_errors: true
+      failed_when: false
+      ansible.builtin.command: "wrk -v"
 
-    - name: "Pull wrk repo"
-      ansible.builtin.git:
-        repo: "https://github.com/wg/wrk.git"
-        dest: "/tmp/wrk"
-        version: "refs/tags/4.2.0"
+    - name: "Build wrk from source"
+      when: "wrk.rc != 1 or 'wrk ' + wrk_version not in wrk.stdout"
+      block:
+        - name: "Install wrk build dependencies"
+          become: true
+          ansible.builtin.apt:
+            pkg:
+              - "build-essential"
+              - "libssl-dev"
+              - "git"
 
-    - name: "Make wrk binary"
-      community.general.make:
-        chdir: "/tmp/wrk"
+        - name: "Pull wrk repo"
+          ansible.builtin.git:
+            repo: "https://github.com/wg/wrk.git"
+            dest: "/tmp/wrk"
+            version: "refs/tags/{{ wrk_version }}"
 
-    - name: "Move wrk binary to /usr/local/bin"
-      become: true
-      ansible.builtin.copy:
-        src: "/tmp/wrk/wrk"
-        dest: "/usr/local/bin/wrk"
-        mode: "a+x"
+        - name: "Make wrk binary"
+          community.general.make:
+            chdir: "/tmp/wrk"
+
+        - name: "Move wrk binary to /usr/local/bin"
+          become: true
+          ansible.builtin.copy:
+            src: "/tmp/wrk/wrk"
+            dest: "/usr/local/bin/wrk"
+            mode: "a+x"
   tags: "wrk"
 
 - name: "Install hey"
