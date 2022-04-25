@@ -9,7 +9,7 @@
       ansible.builtin.command: "go version"
 
     - name: "Download and unarchive go toolchain"
-      when: "installed_version.rc == 0 and go_version not in installed_version.stdout"
+      when: "installed_version.rc != 0 or installed_version.rc == 0 and go_version not in installed_version.stdout"
       become: true
       block:
         - name: "Clear out previous installation"
