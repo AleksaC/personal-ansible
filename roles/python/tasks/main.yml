@@ -16,7 +16,7 @@
 - name: "Install pyenv and change global python interpreter"
   vars:
     pyenv_root: "{{ home }}/.pyenv"
-    python_version: "3.10.4"
+    python_version: "3.10.3"
     pyenv_version: "2.2.5"
   block:
     - name: "Clone pyenv repo"
