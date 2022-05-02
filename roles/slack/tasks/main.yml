@@ -2,5 +2,5 @@
   become: true
   when: "arch == 'amd64'" # Not available on arm
   ansible.builtin.apt:
-    deb: "https://downloads.slack-edge.com/linux_releases/slack-desktop-4.4.3-amd64.deb"
+    deb: "https://downloads.slack-edge.com/releases/linux/4.25.0/prod/x64/slack-desktop-4.25.0-amd64.deb"
     state: "present"

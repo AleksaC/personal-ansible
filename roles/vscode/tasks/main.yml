@@ -1,5 +1,7 @@
 - name: "Install Visual Studio Code"
   become: true
+  vars:
+    vscode_apt_key_location: "/usr/share/keyrings/vscode-archive-keyring.gpg"
   block:
     - name: "Install Visual Studio Code dependencies"
       ansible.builtin.apt:
@@ -11,13 +13,16 @@
       ansible.builtin.apt_key:
         url: "https://packages.microsoft.com/keys/microsoft.asc"
         state: "present"
+        keyring: "{{ vscode_apt_key_location }}"
 
     - name: "Add Visual Studio Code repository"
       ansible.builtin.apt_repository:
         repo: >-
-          deb [arch={{ arch }}] https://packages.microsoft.com/repos/vscode stable main
+          deb [arch={{ arch }} signed-by={{ vscode_apt_key_location }}]
+          https://packages.microsoft.com/repos/code
+          stable main
         state: "present"
-        mode: "0666"
+        filename: "vscode"
 
     - name: "Install Visual Studio Code"
       ansible.builtin.apt:

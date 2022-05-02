@@ -24,17 +24,23 @@
 
 - name: "Install yarn"
   become: true
+  vars:
+    yarn_apt_key_location: "/usr/share/keyrings/yarn-archive-keyring.gpg"
   block:
     - name: "Add yarn signing key"
       ansible.builtin.apt_key:
         url: "https://dl.yarnpkg.com/debian/pubkey.gpg"
         state: "present"
+        keyring: "{{ yarn_apt_key_location }}"
 
     - name: "Add yarn repository"
       ansible.builtin.apt_repository:
-        repo: "deb https://dl.yarnpkg.com/debian/ stable main"
+        repo: >-
+          deb [signed-by={{ yarn_apt_key_location }}]
+          https://dl.yarnpkg.com/debian/
+          stable main
         state: "present"
-        mode: "0666"
+        filename: "yarn"
 
     - name: "Install yarn"
       ansible.builtin.apt:

@@ -1,17 +1,23 @@
 - name: "Install Google Chrome"
   become: true
   when: "arch == 'amd64'"
+  vars:
+    chrome_apt_key_location: "/usr/share/keyrings/chrome-archive-keyring.gpg"
   block:
     - name: "Add Google signing key"
       ansible.builtin.apt_key:
         url: "https://dl.google.com/linux/linux_signing_key.pub"
         state: "present"
+        keyring: "{{ chrome_apt_key_location }}"
 
     - name: "Add Google Chrome repository"
       ansible.builtin.apt_repository:
-        repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main"
+        repo: >-
+          deb [arch=amd64 signed-by={{ chrome_apt_key_location }}]
+          https://dl.google.com/linux/chrome/deb/
+          stable main
         state: "present"
-        mode: "0666"
+        filename: "google-chrome"
 
     - name: "Install Google Chrome"
       ansible.builtin.apt:
