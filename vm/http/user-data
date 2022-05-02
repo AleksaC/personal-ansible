@@ -5,7 +5,7 @@ autoinstall:
   keyboard:
     layout: en
   identity:
-    hostname: ubuntu-20.04
+    hostname: ubuntu-22.04
     username: aleksa
     password: "$6$FhcddHFVZ7ABA4Gi$9l4yURWASWe8xEa1jzI0bacVLvhe3Yn4/G3AnU11K3X0yu/mICVRxfo6tZTB2noKljlIRzjkVZPocdf63MtzC0"
   ssh:
