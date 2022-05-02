@@ -8,7 +8,7 @@ Ansible playbooks for configuring my development environment.
 ## About
 
 This repository contains ansible playbook for installing most of the programs I
-use on my personal machine. I use Ubuntu 20.04, but most of the roles here should
+use on my personal machine. I use Ubuntu 22.04, but most of the roles here should
 work on other versions with little to no modification.
 
 ## Usage
@@ -35,22 +35,16 @@ ansible-playbook main.yml -K
 To only run certain roles use:
 
 ```shell script
-ansible-playbook main.yml --tags role1 role2 -K
+ansible-playbook main.yml --tags role1,role2 -K
 ```
 
 You should run these commands as the main user of the system in order to have all
 the permissions and configurations properly set up.
 
-**Note**: For this purpose I've set up ansible in a virtual environment. It
-turned out to be a bit tricky. To see how I've done it take a look at `set-up-venv.sh`.
-I initially used ansible `2.9` and there were some changes in `2.10` which broke the
-playbook so after fixing it I pinned the ansible version to either `2.9` or `2.10`
-as I'm not sure if the playbook works on older versions and I'm not planning on
-updating it for newer versions.
-
-If you want to install ansbile through `apt` you need to change the
-`interpreter_python` to a system interpreter in `ansible.cfg`. You also need to
-install `psutil` as it is required by `dconf` tasks.
+To run this playbook I recommend setting up ansible inside a virtual environment
+with the versions specified in `requirements.txt`. You can do this using
+`set-up-venv.sh` script. Using other versions of ansible or methods of
+installation is discouraged and may lead to errors.
 
 ### Testing
 To test the playbooks from scratch in a virtualbox vm run the following commands:
