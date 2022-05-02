@@ -34,6 +34,13 @@
   "provisioners": [
     {
       "type": "shell",
+      "inline": [
+        "sudo lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv",
+        "sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv"
+      ]
+    },
+    {
+      "type": "shell",
       "scripts": ["install-guest-additions.sh"]
     }
   ],
