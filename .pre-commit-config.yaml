@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/ansible/ansible-lint.git
-    rev: v6.0.2
+    rev: v6.2.1
     hooks:
       - id: ansible-lint
         always_run: false
@@ -12,6 +12,7 @@ repos:
         args:
           - -x
           - braces,meta-no-info
+          - --offline
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
