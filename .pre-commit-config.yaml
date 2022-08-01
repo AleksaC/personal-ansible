@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/ansible/ansible-lint.git
-    rev: v6.3.0
+    rev: v6.4.0
     hooks:
       - id: ansible-lint
         always_run: false
