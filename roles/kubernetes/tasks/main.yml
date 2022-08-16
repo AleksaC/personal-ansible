@@ -83,3 +83,14 @@
     remote_src: true
     include: "stern"
     mode: "a+x"
+
+- name: "Install kind"
+  become: true
+  vars:
+    kind_version: "v0.14.0"
+    kind_destination: "/usr/local/bin/kind"
+  ansible.builtin.get_url:
+    url: "https://kind.sigs.k8s.io/dl/{{ kind_version }}/kind-linux-{{ arch }}"
+    dest: "{{ kind_destination }}"
+    checksum: "sha256:https://kind.sigs.k8s.io/dl/{{ kind_version }}/kind-linux-{{ arch }}.sha256sum"
+    mode: "a+x"
