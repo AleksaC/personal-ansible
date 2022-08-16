@@ -60,7 +60,7 @@
     include: "kubectx"
     mode: "a+x"
 
-- name: "Install kubns"
+- name: "Install kubens"
   become: true
   vars:
     kubens_version: "0.9.4"
