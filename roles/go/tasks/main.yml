@@ -1,6 +1,6 @@
 - name: "Install go"
   vars:
-    go_version: "1.18.1"
+    go_version: "1.19"
   block:
     - name: "Check if appropriate go is already installed"  # noqa no-changed-when
       register: "installed_version"
