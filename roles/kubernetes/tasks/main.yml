@@ -94,3 +94,15 @@
     dest: "{{ kind_destination }}"
     checksum: "sha256:https://kind.sigs.k8s.io/dl/{{ kind_version }}/kind-linux-{{ arch }}.sha256sum"
     mode: "a+x"
+
+- name: "Install kubebuilder"
+  become: true
+  vars:
+    kubebuilder_version: "v3.6.0"
+    kubebuilder_destination: "/usr/local/bin/kubebuilder"
+    base_url: "https://github.com/kubernetes-sigs/kubebuilder/releases/download/{{ kubebuilder_version }}"
+  ansible.builtin.get_url:
+    url: "{{ base_url }}/kubebuilder_linux_{{ arch }}"
+    dest: "{{ kubebuilder_destination }}"
+    checksum: "sha256:{{ base_url }}/checksums.txt"
+    mode: "a+x"
