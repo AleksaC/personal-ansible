@@ -88,3 +88,15 @@
         src: "{{ dotfiles_dir }}/kitty.conf"
         dest: "{{ home }}/.config/kitty/kitty.conf"
         state: "link"
+
+    - name: "Ensure ~/.config/pip exists"
+      ansible.builtin.file:
+        name: "{{ home }}/.config/pip"
+        state: "directory"
+        mode: "0755"
+
+    - name: "Symlink pip.conf"
+      ansible.builtin.file:
+        src: "{{ dotfiles_dir }}/pip.conf"
+        dest: "{{ home }}/.config/pip/pip.conf"
+        state: "link"
