@@ -47,7 +47,7 @@
         export PYENV_ROOT="{{ pyenv_root }}" PATH="{{ pyenv_root }}/bin:$PATH"
         eval "$(pyenv init --path)"
         eval "$(pyenv init -)"
-        python -m pip install --user pipx
+        PIP_REQUIRE_VIRTUALENV=false python -m pip install --user pipx
 
     - name: "Install python CLIs using pipx"  # noqa no-changed-when
       ansible.builtin.shell: |
